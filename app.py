@@ -60,6 +60,36 @@ def create_tables():
 
 create_tables()
 
+@app.route("/show-tables")
+def show_tables():
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT table_name
+            FROM information_schema.tables
+            WHERE table_schema = 'public'
+            ORDER BY table_name;
+        """)
+
+        tables = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        table_list = "<h2>Tables in Render Database</h2><ul>"
+
+        for table in tables:
+            table_list += f"<li>{table[0]}</li>"
+
+        table_list += "</ul>"
+
+        return table_list
+
+    except Exception as e:
+        return f"<h2>Database Error</h2><p>{e}</p>"
+        
 @app.route("/test-db")
 def test_db():
     try:
