@@ -1,0 +1,744 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #111;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+.signup-page {
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            115deg,
+            rgba(0, 0, 0, 0.80),
+            rgba(0, 0, 0, 0.40)
+        ),
+        url("../background/travel-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Background glow */
+
+.signup-page::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 255, 255, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(0, 200, 255, 0.08),
+            transparent 30%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.signup-container {
+
+    width: 100%;
+    max-width: 900px;
+
+    min-height: 570px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    position: relative;
+    z-index: 2;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.50);
+}
+
+
+/* =========================
+   LEFT TRAVEL SECTION
+========================= */
+
+.travel-section {
+
+    position: relative;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.65)
+        );
+}
+
+
+.logo {
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 34px;
+
+    letter-spacing: 2px;
+
+    color: #fff;
+}
+
+.logo span {
+    color: #ffd166;
+}
+
+
+/* Travel text */
+
+.travel-content {
+    max-width: 350px;
+}
+
+.travel-content .small-title {
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 3px;
+
+    color: #ffd166;
+
+    margin-bottom: 12px;
+}
+
+
+.travel-content h1 {
+
+    font-family: "Bebas Neue", sans-serif;
+
+    font-size: 45px;
+
+    line-height: 0.95;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+}
+
+
+.travel-content h1 span {
+    color: #ffd166;
+}
+
+
+.travel-content p {
+
+    color: rgba(255, 255, 255, 0.78);
+
+    line-height: 1.6;
+
+    font-size: 12px;
+
+    max-width: 320px;
+}
+
+
+.travel-quote {
+
+    border-left: 2px solid #ffd166;
+
+    padding-left: 12px;
+
+    margin-top: 25px;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   SIGNUP SECTION
+========================= */
+
+.signup-section {
+
+    padding: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+
+.signup-box {
+
+    width: 100%;
+
+    max-width: 340px;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.signup-title {
+    margin-bottom: 20px;
+}
+
+
+.signup-title h2 {
+
+    font-size: 25px;
+
+    font-weight: 600;
+
+    margin-bottom: 5px;
+}
+
+
+.signup-title p {
+
+    font-size: 11px;
+
+    color: rgba(255, 255, 255, 0.60);
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-message {
+
+    background: rgba(255, 80, 80, 0.15);
+
+    border: 1px solid rgba(255, 100, 100, 0.35);
+
+    color: #ff9d9d;
+
+    padding: 9px 12px;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+
+.form-group label {
+
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    margin-bottom: 6px;
+
+    color: rgba(255, 255, 255, 0.85);
+}
+
+
+.input-wrapper {
+    position: relative;
+}
+
+
+.input-wrapper input {
+
+    width: 100%;
+
+    height: 43px;
+
+    padding: 0 42px 0 14px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.09);
+
+    color: #fff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 11px;
+
+    transition: 0.3s;
+}
+
+
+.input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.38);
+}
+
+
+.input-wrapper input:focus {
+
+    border-color: #ffd166;
+
+    background: rgba(255, 255, 255, 0.13);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 209, 102, 0.08);
+}
+
+
+.input-icon {
+
+    position: absolute;
+
+    right: 14px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: 14px;
+
+    pointer-events: none;
+}
+
+
+/* Password button */
+
+.password-toggle {
+
+    position: absolute;
+
+    right: 9px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: none;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    padding: 5px;
+}
+
+.password-toggle:hover {
+    color: #ffd166;
+}
+
+
+/* =========================
+   TERMS
+========================= */
+
+.terms {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 7px;
+
+    margin: 13px 0 17px;
+
+    font-size: 9px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    cursor: pointer;
+}
+
+
+.terms input {
+
+    margin-top: 2px;
+
+    accent-color: #ffd166;
+}
+
+
+.terms a {
+
+    color: #ffd166;
+
+    text-decoration: none;
+}
+
+
+.terms a:hover {
+    color: #fff;
+}
+
+
+/* =========================
+   SIGNUP BUTTON
+========================= */
+
+.signup-button {
+
+    width: 100%;
+
+    height: 46px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd166,
+            #ffb703
+        );
+
+    color: #171717;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    box-shadow:
+        0 10px 20px rgba(255, 183, 3, 0.20);
+
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+}
+
+
+.signup-button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 25px rgba(255, 183, 3, 0.28);
+}
+
+
+.signup-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 17px 0;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    font-size: 9px;
+}
+
+
+.divider::before,
+.divider::after {
+
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================
+   LOGIN LINK
+========================= */
+
+.login-link {
+
+    text-align: center;
+
+    font-size: 10px;
+
+    color: rgba(255, 255, 255, 0.55);
+}
+
+
+.login-link a {
+
+    color: #ffd166;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    margin-left: 3px;
+}
+
+
+.login-link a:hover {
+    color: #fff;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+
+    position: absolute;
+
+    bottom: 8px;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 8px;
+
+    color: rgba(255, 255, 255, 0.35);
+
+    z-index: 5;
+}
+
+
+/* =========================
+   TABLET / PHONE
+========================= */
+
+@media (max-width: 750px) {
+
+    .signup-page {
+        padding: 15px;
+    }
+
+    .signup-container {
+
+        max-width: 500px;
+
+        min-height: auto;
+
+        grid-template-columns: 1fr;
+
+        border-radius: 20px;
+    }
+
+
+    /* Compact travel header */
+
+    .travel-section {
+
+        min-height: 100px;
+
+        padding: 20px 25px;
+
+        justify-content: flex-start;
+    }
+
+
+    .logo {
+        font-size: 30px;
+    }
+
+
+    .travel-content {
+        margin-top: 15px;
+    }
+
+
+    .travel-content .small-title {
+        font-size: 9px;
+        letter-spacing: 2.5px;
+    }
+
+
+    /* Hide large text on phone */
+
+    .travel-content h1 {
+        display: none;
+    }
+
+
+    .travel-content p {
+        display: none;
+    }
+
+
+    .travel-quote {
+        display: none;
+    }
+
+
+    /* Signup */
+
+    .signup-section {
+
+        padding: 28px 25px 32px;
+    }
+
+
+    .signup-box {
+        max-width: 350px;
+    }
+
+
+    .signup-title h2 {
+        font-size: 23px;
+    }
+}
+
+
+/* =========================
+   SMALL PHONE
+========================= */
+
+@media (max-width: 430px) {
+
+    .signup-page {
+        padding: 10px;
+    }
+
+
+    .signup-container {
+        border-radius: 18px;
+    }
+
+
+    .travel-section {
+
+        min-height: 85px;
+
+        padding: 18px 20px;
+    }
+
+
+    .logo {
+        font-size: 27px;
+    }
+
+
+    .travel-content {
+        margin-top: 10px;
+    }
+
+
+    .signup-section {
+
+        padding: 25px 20px 28px;
+    }
+
+
+    .signup-title {
+        margin-bottom: 18px;
+    }
+
+
+    .signup-title h2 {
+        font-size: 21px;
+    }
+
+
+    .input-wrapper input {
+        height: 44px;
+    }
+
+
+    .signup-button {
+        height: 45px;
+    }
+
+
+    .footer {
+        display: none;
+    }
+}
