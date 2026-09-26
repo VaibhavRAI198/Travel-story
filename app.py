@@ -1,8 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+import os
+import psycopg2
 
 app = Flask(__name__)
 
 app.secret_key = "travel_story"
+
+def get_db_connection():
+    return psycopg2.connect(os.environ["DATABASE_URL"])
 
 @app.route("/")
 def home():
