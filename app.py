@@ -24,7 +24,7 @@ def test_db():
         return redner_template("dashboard.html" , db=f"Database connected successfully: {result[0]}")
 
     except Exception as e:
-        return redner_template("dashboard.html" , db=f"Database connected successfully: {result[0]}")
+        return redner_template("dashboard.html" , db=f"Error : {e}")
 
 @app.route("/")
 def home():
