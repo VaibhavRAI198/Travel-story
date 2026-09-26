@@ -507,7 +507,7 @@ body {
     }
 
     .travel-content h1 {
-        font-size: 42px;
+        display:none;
     }
 
     .travel-content p {
@@ -561,7 +561,7 @@ body {
     }
 
     .travel-content h1 {
-        font-size: 37px;
+        display:none;
     }
 
     .login-section {
