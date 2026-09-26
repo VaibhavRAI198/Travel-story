@@ -9,6 +9,23 @@ app.secret_key = "travel_story"
 def get_db_connection():
     return psycopg2.connect(os.environ["DATABASE_URL"])
 
+@app.route("/test-db")
+def test_db():
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT version();")
+        result = cursor.fetchone()
+
+        cursor.close()
+        conn.close()
+
+        return f"Database connected successfully: {result[0]}"
+
+    except Exception as e:
+        return f"Database error: {e}"
+
 @app.route("/")
 def home():
     if "username" in session:
