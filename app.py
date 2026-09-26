@@ -58,6 +58,8 @@ def create_tables():
 
     print("Tables created!")
 
+create_table()
+
 @app.route("/test-db")
 def test_db():
     try:
