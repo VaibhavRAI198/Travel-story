@@ -10,7 +10,10 @@ def home():
         return redirect(url_for("dashboard"))
     return redirect(url_for("login"))
 
-@app.route("/login", methods=["GET", "POST"])
+USERNAME = "raiv"
+PASSWORD = "64843810"
+
+@app.route("/login", methods=["GET","POST"])
 def login():
     if request.method == "POST":
         username = request.form.get("username")
@@ -31,6 +34,10 @@ def dashboard():
 def logout():
     session.clear()
     return redirect(url_for("login"))
+
+@app.route("/signup")
+def signup():
+    return render_template("signup.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
