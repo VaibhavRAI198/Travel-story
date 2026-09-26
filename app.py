@@ -9,6 +9,55 @@ app.secret_key = "travel_story"
 def get_db_connection():
     return psycopg2.connect(os.environ["DATABASE_URL"])
 
+def create_tables():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            username VARCHAR(100) UNIQUE NOT NULL,
+            email VARCHAR(255),
+            password VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS cities (
+            id SERIAL PRIMARY KEY,
+            user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+            city_name VARCHAR(150) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS places (
+            id SERIAL PRIMARY KEY,
+            city_id INTEGER REFERENCES cities(id) ON DELETE CASCADE,
+            place_name VARCHAR(200) NOT NULL,
+            about_place TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS place_images (
+            id SERIAL PRIMARY KEY,
+            place_id INTEGER REFERENCES places(id) ON DELETE CASCADE,
+            image_name VARCHAR(255) NOT NULL,
+            image_path TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    """)
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    print("Tables created!")
+
 @app.route("/test-db")
 def test_db():
     try:
