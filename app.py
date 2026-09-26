@@ -14,17 +14,13 @@ def test_db():
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-
         cursor.execute("SELECT version();")
         result = cursor.fetchone()
-
         cursor.close()
         conn.close()
-
-        return redner_template("dashboard.html" , db=f"Database connected successfully: {result[0]}")
-
+        return render_template("dashboard.html" , db=f"Database connected successfully: {result[0]}")
     except Exception as e:
-        return redner_template("dashboard.html" , db=f"Error : {e}")
+        return render_template("dashboard.html" , db=f"Error : {e}")
 
 @app.route("/")
 def home():
