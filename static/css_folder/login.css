@@ -463,7 +463,6 @@ body {
     z-index: 5;
 }
 
-
 /* =========================
    TABLET / MOBILE
 ========================= */
@@ -476,19 +475,14 @@ body {
 
     .login-container {
         max-width: 500px;
-
         min-height: auto;
-
         grid-template-columns: 1fr;
-
         border-radius: 20px;
     }
 
     .travel-section {
-        min-height: 210px;
-
-        padding: 25px;
-
+        min-height: 110px;
+        padding: 20px 25px;
         justify-content: flex-start;
     }
 
@@ -497,17 +491,17 @@ body {
     }
 
     .travel-content {
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     .travel-content .small-title {
         font-size: 9px;
-
         letter-spacing: 2.5px;
     }
 
+    /* HIDE LIVE / TRAVEL / REMEMBER ON PHONE */
     .travel-content h1 {
-        display:none;
+        display: none;
     }
 
     .travel-content p {
@@ -547,9 +541,8 @@ body {
     }
 
     .travel-section {
-        min-height: 185px;
-
-        padding: 20px;
+        min-height: 95px;
+        padding: 18px 20px;
     }
 
     .logo {
@@ -557,11 +550,11 @@ body {
     }
 
     .travel-content {
-        margin-top: 20px;
+        margin-top: 12px;
     }
 
     .travel-content h1 {
-        display:none;
+        display: none;
     }
 
     .login-section {
@@ -588,3 +581,4 @@ body {
         font-size: 9px;
     }
 }
+
