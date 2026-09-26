@@ -21,10 +21,10 @@ def test_db():
         cursor.close()
         conn.close()
 
-        return f"Database connected successfully: {result[0]}"
+        return redner_template("dashboard.html" , db=f"Database connected successfully: {result[0]}")
 
     except Exception as e:
-        return f"Database error: {e}"
+        return redner_template("dashboard.html" , db=f"Database connected successfully: {result[0]}")
 
 @app.route("/")
 def home():
