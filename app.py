@@ -53,7 +53,7 @@ def database_login():
     username = request.form.get("username")
     password = request.form.get("password")
     if username == USERNAME and password == PASSWORD:
-        return render_template("my_database.html" , result="authorized" , connection=test_db() , table=show_table())
+        return render_template("my_database.html" , result="authorized" , connection=test_db() , table=show_tables())
     else:
         return render_template("my_database.html" , error="Unauthorized")
 
