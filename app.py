@@ -218,12 +218,24 @@ def delete_table():
 
 @app.route("/database_login", methods=["POST"])
 def database_login():
+
     username = request.form.get("username")
     password = request.form.get("password")
+
     if username == USERNAME and password == PASSWORD:
-        return render_template("my_database.html" , result="authorized" , table=show_tables())
+
+        return render_template(
+            "my_database.html",
+            result="authorized",
+            tables=show_tables()
+        )
+
     else:
-        return render_template("my_database.html" , error="Unauthorized")
+
+        return render_template(
+            "my_database.html",
+            error="Unauthorized"
+        )
 
 
 @app.route("/")
