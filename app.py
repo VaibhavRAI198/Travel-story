@@ -25,9 +25,8 @@ def test_db():
 def database_login():
     username = request.form.get("username")
     password = request.form.get("password")
-    database_connection=test_db()
     if username == USERNAME and password == PASSWORD:
-        return render_template("my_database.html" , result="authorized" , connection="database_connection")
+        return render_template("my_database.html" , result="authorized" , connection=test_db())
     else:
         return render_template("my_database.html" , error="Unauthorized")
         
