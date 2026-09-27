@@ -21,12 +21,39 @@ def test_db():
     except Exception as e:
         return f"Error : {e}"
         
+def show_tables():
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT table_name
+            FROM information_schema.tables
+            WHERE table_schema = 'public'
+            ORDER BY table_name;
+        """)
+        tables = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return render_template(
+            "my_database.html",
+            result="authorized",
+            tables=tables,
+            connection=test_db()
+        )
+    except Exception as e:
+        return render_template(
+            "my_database.html",
+            result="authorized",
+            error=f"Error showing tables: {e}",
+            connection=test_db()
+        )
+        
 @app.route("/database_login", methods=["POST"])
 def database_login():
     username = request.form.get("username")
     password = request.form.get("password")
     if username == USERNAME and password == PASSWORD:
-        return render_template("my_database.html" , result="authorized" , connection=test_db())
+        return render_template("my_database.html" , result="authorized" , connection=test_db() , table=show_table())
     else:
         return render_template("my_database.html" , error="Unauthorized")
 
