@@ -34,19 +34,9 @@ def show_tables():
         tables = cursor.fetchall()
         cursor.close()
         conn.close()
-        return render_template(
-            "my_database.html",
-            result="authorized",
-            tables=tables,
-            connection=test_db()
-        )
+        return tables
     except Exception as e:
-        return render_template(
-            "my_database.html",
-            result="authorized",
-            error=f"Error showing tables: {e}",
-            connection=test_db()
-        )
+        return f"Error showing tables: {e}"
         
 @app.route("/database_login", methods=["POST"])
 def database_login():
