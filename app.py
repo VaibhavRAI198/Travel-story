@@ -8,33 +8,56 @@ app.secret_key = "travel_story"
 
 def get_db_connection():
     return psycopg2.connect(os.environ["DATABASE_URL"])
-
-def test_db():
-    try:
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute("SELECT version();")
-        result = cursor.fetchone()
-        cursor.close()
-        conn.close()
-        return f"Database connected successfully: {result[0]}"
-    except Exception as e:
-        return f"Error : {e}"
         
 def show_tables():
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
+
+        # Get all tables
         cursor.execute("""
             SELECT table_name
             FROM information_schema.tables
             WHERE table_schema = 'public'
+              AND table_type = 'BASE TABLE'
             ORDER BY table_name;
         """)
-        tables = cursor.fetchall()
+
+        table_names = cursor.fetchall()
+
+        all_tables = {}
+
+        for table in table_names:
+            table_name = table[0]
+
+            # Get columns
+            cursor.execute("""
+                SELECT column_name, data_type
+                FROM information_schema.columns
+                WHERE table_schema = 'public'
+                  AND table_name = %s
+                ORDER BY ordinal_position;
+            """, (table_name,))
+
+            columns = cursor.fetchall()
+
+            # Get all rows
+            cursor.execute(
+                f'SELECT * FROM "{table_name}";'
+            )
+
+            rows = cursor.fetchall()
+
+            all_tables[table_name] = {
+                "columns": columns,
+                "rows": rows
+            }
+
         cursor.close()
         conn.close()
-        return tables
+
+        return all_tables
+
     except Exception as e:
         return f"Error showing tables: {e}"
         
@@ -43,7 +66,7 @@ def database_login():
     username = request.form.get("username")
     password = request.form.get("password")
     if username == USERNAME and password == PASSWORD:
-        return render_template("my_database.html" , result="authorized" , connection=test_db() , table=show_tables())
+        return render_template("my_database.html" , result="authorized" , table=show_tables())
     else:
         return render_template("my_database.html" , error="Unauthorized")
 
