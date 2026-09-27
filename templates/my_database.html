@@ -229,8 +229,14 @@
     {% endif %}
 </div>
 <div class="database-box" style="display: {{ 'block' if result == 'authorized' else 'none' }};">
-
-    {{table}}
+    <table>
+        {%for i,j in table.items()%}
+        <tr>
+            <td>{{i}}</td>
+            <td>{{j}}</td>
+        </tr>
+        {%endfor%}
+    </table>
 </div>
 </div>
 </body>
