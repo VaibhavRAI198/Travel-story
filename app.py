@@ -76,22 +76,38 @@ def login():
 def dashboard():
     if "user_id" not in session:
         return redirect(url_for("login"))
+
     user_id = session["user_id"]
+
     conn = get_db_connection()
     cursor = conn.cursor()
+
     cursor.execute("""
         SELECT *
         FROM user_detail
-        WHERE userid = %s
+        WHERE user_id = %s
     """, (user_id,))
+
     row = cursor.fetchone()
+
+    # Get column names before closing cursor
     columns = [desc[0] for desc in cursor.description]
+
     cursor.close()
     conn.close()
+
     if not row:
         return "User data not found", 404
+
+    # Convert row to dictionary
     user_data = dict(zip(columns, row))
-    return render_template("dashboard.html",username=session.get("username"),user_id=user_id,user_data=user_data)
+
+    return render_template(
+        "dashboard.html",
+        username=session.get("username"),
+        user_id=user_id,
+        user_data=user_data
+    )
     
 @app.route("/logout")
 def logout():
