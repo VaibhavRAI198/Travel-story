@@ -47,7 +47,7 @@ def database():
     return render_template("my_database.html")
 
 
-@app.route("/signup", methods=["GET", "POST"])
+@app.route("/signup", methods=["POST"])
 def signup():
     error = None
     if request.method == "POST":
