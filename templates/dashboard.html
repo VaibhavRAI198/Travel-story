@@ -1,18 +1,374 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-    <title>Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Travel Story - Dashboard</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        background:
+            radial-gradient(circle at top left, rgba(99, 102, 241, 0.35), transparent 35%),
+            radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.35), transparent 35%),
+            linear-gradient(135deg, #111827, #312e81, #4c1d95);
+
+        color: white;
+    }
+
+    /* ================= HEADER ================= */
+
+    .navbar {
+        height: 75px;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 40px;
+
+        background: rgba(255, 255, 255, 0.10);
+        backdrop-filter: blur(15px);
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .logo {
+        font-size: 26px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .logo span {
+        color: #c4b5fd;
+    }
+
+    .logout-btn {
+        text-decoration: none;
+        color: white;
+
+        padding: 11px 20px;
+
+        border-radius: 10px;
+
+        background: rgba(239, 68, 68, 0.85);
+
+        font-weight: bold;
+
+        transition: 0.3s;
+    }
+
+    .logout-btn:hover {
+        background: #dc2626;
+        transform: translateY(-2px);
+    }
+
+    /* ================= MAIN ================= */
+
+    .container {
+        width: 90%;
+        max-width: 1100px;
+
+        margin: 45px auto;
+    }
+
+    .welcome {
+        margin-bottom: 35px;
+    }
+
+    .welcome h1 {
+        font-size: 38px;
+        margin-bottom: 10px;
+    }
+
+    .welcome p {
+        color: #ddd6fe;
+        font-size: 17px;
+    }
+
+    /* ================= USER CARD ================= */
+
+    .user-card {
+        background: rgba(255, 255, 255, 0.12);
+
+        backdrop-filter: blur(18px);
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        border-radius: 20px;
+
+        padding: 25px;
+
+        margin-bottom: 35px;
+
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .user-card h2 {
+        margin-bottom: 15px;
+    }
+
+    .user-info {
+        color: #e5e7eb;
+        line-height: 1.8;
+    }
+
+    /* ================= DASHBOARD BUTTONS ================= */
+
+    .section-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-grid {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 20px;
+    }
+
+    .dashboard-card {
+        text-decoration: none;
+        color: white;
+
+        padding: 30px 20px;
+
+        min-height: 160px;
+
+        border-radius: 18px;
+
+        background: rgba(255, 255, 255, 0.12);
+
+        backdrop-filter: blur(15px);
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+
+        transition: 0.3s;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-7px);
+
+        background: rgba(255, 255, 255, 0.20);
+
+        box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    .icon {
+        font-size: 42px;
+        margin-bottom: 15px;
+    }
+
+    .dashboard-card h3 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .dashboard-card p {
+        color: #ddd6fe;
+        font-size: 14px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        text-align: center;
+
+        margin-top: 55px;
+
+        padding: 20px;
+
+        color: #c4b5fd;
+
+        font-size: 14px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 800px) {
+
+        .dashboard-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .navbar {
+            padding: 0 20px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+        }
+    }
+
+    @media (max-width: 500px) {
+
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .navbar {
+            height: 65px;
+        }
+
+        .logo {
+            font-size: 21px;
+        }
+
+        .logout-btn {
+            padding: 9px 14px;
+            font-size: 14px;
+        }
+
+        .container {
+            width: 92%;
+            margin-top: 30px;
+        }
+    }
+</style>
+```
+
 </head>
+
 <body>
 
-    
-    <h1>Welcome, {{ username }}!</h1>
+```
+<!-- ================= NAVBAR ================= -->
 
-    {{user_data}}
-    <p>You are logged in.</p>
+<header class="navbar">
 
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <div class="logo">
+        Travel <span>Story</span>
+    </div>
 
-    
+    <a href="{{ url_for('logout') }}" class="logout-btn">
+        🚪 Logout
+    </a>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+    <!-- Welcome -->
+
+    <section class="welcome">
+
+        <h1>
+            Welcome, {{ username }}! 👋
+        </h1>
+
+        <p>
+            Manage your travel stories, cities and profile from your dashboard.
+        </p>
+
+    </section>
+
+
+    <!-- User Information -->
+
+    <section class="user-card">
+
+        <h2>👤 Your Profile</h2>
+
+        <div class="user-info">
+            {{ user_data }}
+        </div>
+
+    </section>
+
+
+    <!-- Dashboard -->
+
+    <h2 class="section-title">
+        Dashboard
+    </h2>
+
+
+    <div class="dashboard-grid">
+
+
+        <!-- Add City -->
+
+        <a href="{{ url_for('add_city') }}" class="dashboard-card">
+
+            <div class="icon">
+                🏙️
+            </div>
+
+            <h3>Add City</h3>
+
+            <p>
+                Add a new city to your travel story
+            </p>
+
+        </a>
+
+
+        <!-- About Me -->
+
+        <a href="{{ url_for('aboutme') }}" class="dashboard-card">
+
+            <div class="icon">
+                👤
+            </div>
+
+            <h3>About Me</h3>
+
+            <p>
+                View and manage your personal information
+            </p>
+
+        </a>
+
+
+        <!-- Settings -->
+
+        <a href="{{ url_for('setting') }}" class="dashboard-card">
+
+            <div class="icon">
+                ⚙️
+            </div>
+
+            <h3>Settings</h3>
+
+            <p>
+                Manage your account and preferences
+            </p>
+
+        </a>
+
+
+    </div>
+
+
+    <footer>
+        © 2026 Travel Story • Your journey, your memories.
+    </footer>
+
+</main>
+
 </body>
 </html>
