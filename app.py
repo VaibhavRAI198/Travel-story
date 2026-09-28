@@ -14,10 +14,8 @@ def get_db_connection():
 
 @app.route("/")
 def home():
-
     if "username" in session:
         return redirect(url_for("dashboard"))
-
     return redirect(url_for("login"))
 
 @app.route("/login", methods=["GET", "POST"])
@@ -73,11 +71,27 @@ def login():
             if conn:
                 conn.close()
     return render_template("login.html")
+
 @app.route("/dashboard")
 def dashboard():
-    if "username" not in session:
+    if "user_id" not in session:
         return redirect(url_for("login"))
-    return render_template("dashboard.html",username=session["username"])
+    user_id = session["user_id"]
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        SELECT *
+        FROM user_detail
+        WHERE userid = %s
+    """, (user_id,))
+    row = cursor.fetchone()
+    columns = [desc[0] for desc in cursor.description]
+    cursor.close()
+    conn.close()
+    if not row:
+        return "User data not found", 404
+    user_data = dict(zip(columns, row))
+    return render_template("dashboard.html",username=session.get("username"),user_id=user_id,user_data=user_data)
     
 @app.route("/logout")
 def logout():
