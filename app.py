@@ -42,37 +42,34 @@ def login():
 
     if request.method == "POST":
 
-        username = request.form.get("username", "").strip()
-        password = request.form.get("password", "").strip()
+        # Get values from HTML login form
+        login_value = request.form.get("username", "").strip()
+        login_password = request.form.get("password", "").strip()
 
-
-        # =================================================
-        # ADMIN LOGIN
-        # =================================================
-
-        if username == USERNAME and password == PASSWORD:
-
-            session["username"] = username
-            session["user_type"] = "admin"
-
-            return redirect(url_for("dashboard"))
-
-
-        # =================================================
-        # DATABASE USER LOGIN
-        # Login using:
-        # 1. user_id
-        # 2. email_id
-        # 3. mobile_number
-        # =================================================
+        # Validate form
+        if not login_value or not login_password:
+            return render_template(
+                "login.html",
+                error="Please enter username and password."
+            )
 
         conn = None
         cursor = None
 
         try:
 
+            # Connect to PostgreSQL
             conn = get_db_connection()
             cursor = conn.cursor()
+
+            # =================================================
+            # VERIFY LOGIN FROM DATABASE
+            #
+            # username field can contain:
+            #   user_id
+            #   email_id
+            #   mobile_number
+            # =================================================
 
             cursor.execute(
                 """
@@ -90,53 +87,65 @@ def login():
                 LIMIT 1
                 """,
                 (
-                    username,
-                    username,
-                    username
+                    login_value,
+                    login_value,
+                    login_value
                 )
             )
 
             user = cursor.fetchone()
 
-
             # =================================================
-            # CHECK USERNAME AND PASSWORD
-            # =================================================
-
-            if user:
-
-                user_id = user[0]
-                full_name = user[1]
-                email_id = user[2]
-                mobile_number = user[3]
-                database_password = user[4]
-
-
-                if password == database_password:
-
-                    # -----------------------------------------
-                    # LOGIN SUCCESS
-                    # -----------------------------------------
-
-                    session["username"] = user_id
-                    session["user_id"] = user_id
-                    session["full_name"] = full_name
-                    session["email_id"] = email_id
-                    session["mobile_number"] = mobile_number
-                    session["user_type"] = "user"
-
-                    return redirect(url_for("dashboard"))
-
-
-            # =================================================
-            # INVALID LOGIN
+            # USER NOT FOUND
             # =================================================
 
-            return render_template(
-                "login.html",
-                error="Invalid User ID, Email, Mobile Number or Password."
-            )
+            if user is None:
 
+                return render_template(
+                    "login.html",
+                    error="Invalid User ID, Email or Mobile Number."
+                )
+
+            # =================================================
+            # GET DATABASE VALUES
+            # =================================================
+
+            user_id = user[0]
+            full_name = user[1]
+            email_id = user[2]
+            mobile_number = user[3]
+            database_password = user[4]
+
+            # =================================================
+            # VERIFY PASSWORD
+            # =================================================
+
+            if login_password != database_password:
+
+                return render_template(
+                    "login.html",
+                    error="Invalid password."
+                )
+
+            # =================================================
+            # LOGIN SUCCESS
+            # =================================================
+
+            session["user_id"] = user_id
+            session["username"] = user_id
+            session["full_name"] = full_name
+            session["email_id"] = email_id
+            session["mobile_number"] = mobile_number
+
+            print("----------------------------------------")
+            print("LOGIN SUCCESS")
+            print("User ID      :", user_id)
+            print("Full Name    :", full_name)
+            print("Email        :", email_id)
+            print("Mobile       :", mobile_number)
+            print("----------------------------------------")
+
+            return redirect(url_for("dashboard"))
 
         except Exception as e:
 
@@ -148,9 +157,8 @@ def login():
 
             return render_template(
                 "login.html",
-                error=f"Database Error: {str(e)}"
+                error="Unable to connect to database."
             )
-
 
         finally:
 
@@ -160,7 +168,7 @@ def login():
             if conn:
                 conn.close()
 
-
+    # GET request
     return render_template("login.html")
 
 
