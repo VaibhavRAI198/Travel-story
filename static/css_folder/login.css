@@ -120,6 +120,23 @@ body {
     color: #ffd166;
 }
 
+.error-message {
+
+    background: rgba(255, 80, 80, 0.15);
+
+    border: 1px solid rgba(255, 100, 100, 0.35);
+
+    color: #ff9d9d;
+
+    padding: 9px 12px;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+
+    margin-bottom: 15px;
+}
+
 .travel-content p {
     color: rgba(255, 255, 255, 0.78);
     line-height: 1.6;
