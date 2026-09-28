@@ -38,8 +38,8 @@ def logout():
     session.clear()
     return redirect(url_for("login"))
 
-@app.route("/signup")
-def signup():
+@app.route("/signup_page")
+def signup_page():
     return render_template("signup.html")
 
 @app.route("/database")
@@ -47,7 +47,7 @@ def database():
     return render_template("my_database.html")
 
 
-@app.route("/signup", methods=["POST"])
+@app.route("/signup", methods=["GET" , "POST"])
 def signup():
     error = None
     if request.method == "POST":
