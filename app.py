@@ -30,23 +30,7 @@ def login():
         try:
             conn = get_db_connection()
             cursor = conn.cursor()
-            cursor.execute(
-                """
-                SELECT
-                    user_id,
-                    full_name,
-                    email_id,
-                    mobile_number,
-                    password
-                FROM user_detail
-                WHERE
-                    user_id = %s
-                    OR email_id = %s
-                    OR mobile_number = %s
-                LIMIT 1
-                """,
-                (login_value,login_value,login_value)
-            )
+            cursor.execute(" SELECT user_id, full_name, email_id, mobile_number, password FROM user_detail WHERE user_id = %s OR email_id = %s OR mobile_number = %s LIMIT 1",(login_value,login_value,login_value))
             user = cursor.fetchone()
             if user is None:
                 return render_template("login.html",error="Invalid User ID, Email or Mobile Number.")
@@ -76,38 +60,18 @@ def login():
 def dashboard():
     if "user_id" not in session:
         return redirect(url_for("login"))
-
     user_id = session["user_id"]
-
     conn = get_db_connection()
     cursor = conn.cursor()
-
-    cursor.execute("""
-        SELECT *
-        FROM user_detail
-        WHERE user_id = %s
-    """, (user_id,))
-
+    cursor.execute("SELECT * FROM user_detail WHERE user_id = %s", (user_id,))
     row = cursor.fetchone()
-
-    # Get column names before closing cursor
     columns = [desc[0] for desc in cursor.description]
-
     cursor.close()
     conn.close()
-
     if not row:
         return "User data not found", 404
-
-    # Convert row to dictionary
     user_data = dict(zip(columns, row))
-
-    return render_template(
-        "dashboard.html",
-        username=session.get("username"),
-        user_id=user_id,
-        user_data=user_data
-    )
+    return render_template( "dashboard.html",username=session.get("username"),user_data=user_data)
     
 @app.route("/logout")
 def logout():
