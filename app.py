@@ -174,5 +174,12 @@ def signup():
         if conn:
             conn.close()
 
+@app.route("/add_city") 
+def add_city():
+    if "username" not in session: 
+        return redirect(url_for("login")) 
+    return render_template("add_city.html")
+    
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=int(os.environ.get("PORT", 5000)),debug=True)
