@@ -33,15 +33,6 @@ def home():
 
     return redirect(url_for("login"))
 
-
-# =========================================================
-# ADMIN LOGIN
-# =========================================================
-
-USERNAME = "raiv"
-PASSWORD = "64843810"
-
-
 # =========================================================
 # LOGIN
 # =========================================================
@@ -54,16 +45,121 @@ def login():
         username = request.form.get("username", "").strip()
         password = request.form.get("password", "").strip()
 
+
+        # =================================================
+        # ADMIN LOGIN
+        # =================================================
+
         if username == USERNAME and password == PASSWORD:
 
             session["username"] = username
+            session["user_type"] = "admin"
 
             return redirect(url_for("dashboard"))
 
-        return render_template(
-            "login.html",
-            error="Invalid username or password"
-        )
+
+        # =================================================
+        # DATABASE USER LOGIN
+        # Login using:
+        # 1. user_id
+        # 2. email_id
+        # 3. mobile_number
+        # =================================================
+
+        conn = None
+        cursor = None
+
+        try:
+
+            conn = get_db_connection()
+            cursor = conn.cursor()
+
+            cursor.execute(
+                """
+                SELECT
+                    user_id,
+                    full_name,
+                    email_id,
+                    mobile_number,
+                    password
+                FROM user_detail
+                WHERE
+                    user_id = %s
+                    OR email_id = %s
+                    OR mobile_number = %s
+                LIMIT 1
+                """,
+                (
+                    username,
+                    username,
+                    username
+                )
+            )
+
+            user = cursor.fetchone()
+
+
+            # =================================================
+            # CHECK USERNAME AND PASSWORD
+            # =================================================
+
+            if user:
+
+                user_id = user[0]
+                full_name = user[1]
+                email_id = user[2]
+                mobile_number = user[3]
+                database_password = user[4]
+
+
+                if password == database_password:
+
+                    # -----------------------------------------
+                    # LOGIN SUCCESS
+                    # -----------------------------------------
+
+                    session["username"] = user_id
+                    session["user_id"] = user_id
+                    session["full_name"] = full_name
+                    session["email_id"] = email_id
+                    session["mobile_number"] = mobile_number
+                    session["user_type"] = "user"
+
+                    return redirect(url_for("dashboard"))
+
+
+            # =================================================
+            # INVALID LOGIN
+            # =================================================
+
+            return render_template(
+                "login.html",
+                error="Invalid User ID, Email, Mobile Number or Password."
+            )
+
+
+        except Exception as e:
+
+            print("----------------------------------------")
+            print("LOGIN DATABASE ERROR")
+            print("ERROR TYPE:", type(e).__name__)
+            print("ERROR:", str(e))
+            print("----------------------------------------")
+
+            return render_template(
+                "login.html",
+                error=f"Database Error: {str(e)}"
+            )
+
+
+        finally:
+
+            if cursor:
+                cursor.close()
+
+            if conn:
+                conn.close()
+
 
     return render_template("login.html")
 
@@ -106,19 +202,6 @@ def signup_page():
 
     return render_template("signup.html")
 
-
-# =========================================================
-# DATABASE PAGE
-# =========================================================
-
-@app.route("/database")
-def database():
-
-    if "username" not in session:
-
-        return redirect(url_for("login"))
-
-    return render_template("my_database.html")
 
 
 # =========================================================
