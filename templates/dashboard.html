@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-```
 <title>Travel Story - Dashboard</title>
-
 <style>
     * {
         margin: 0;
@@ -256,119 +253,43 @@
 <!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
-
     <div class="logo">
         Travel <span>Story</span>
     </div>
-
-    <a href="{{ url_for('logout') }}" class="logout-btn">
-        🚪 Logout
-    </a>
-
+    <a href="{{ url_for('logout') }}" class="logout-btn">🚪 Logout</a>
 </header>
 
 
 <!-- ================= MAIN ================= -->
 
 <main class="container">
-
-    <!-- Welcome -->
-
     <section class="welcome">
-
-        <h1>
-            Welcome, {{ username }}! 👋
-        </h1>
-
-        <p>
-            Manage your travel stories, cities and profile from your dashboard.
-        </p>
-
+        <h1>Welcome, {{ username }}! 👋</h1>
+        <p>Manage your travel stories, cities and profile from your dashboard.</p>
     </section>
-
-
-    <!-- User Information -->
-
     <section class="user-card">
-
         <h2>👤 Your Profile</h2>
-
-        <div class="user-info">
-            {{ user_data }}
-        </div>
-
+        <div class="user-info">{{ user_data }}</div>
     </section>
-
-
-    <!-- Dashboard -->
-
-    <h2 class="section-title">
-        Dashboard
-    </h2>
-
-
+    <h2 class="section-title">Dashboard</h2>
     <div class="dashboard-grid">
-
-
-        <!-- Add City -->
-
-        <a href="{{ url_for('add_city') }}" class="dashboard-card">
-
-            <div class="icon">
-                🏙️
-            </div>
-
+        <a href="" class="dashboard-card">
+            <div class="icon">🏙️</div>
             <h3>Add City</h3>
-
-            <p>
-                Add a new city to your travel story
-            </p>
-
+            <p>Add a new city to your travel story</p>
         </a>
-
-
-        <!-- About Me -->
-
-        <a href="{{ url_for('aboutme') }}" class="dashboard-card">
-
-            <div class="icon">
-                👤
-            </div>
-
+        <a href="" class="dashboard-card">
+            <div class="icon">👤</div>
             <h3>About Me</h3>
-
-            <p>
-                View and manage your personal information
-            </p>
-
+            <p>View and manage your personal information</p>
         </a>
-
-
-        <!-- Settings -->
-
-        <a href="{{ url_for('setting') }}" class="dashboard-card">
-
-            <div class="icon">
-                ⚙️
-            </div>
-
+        <a href="" class="dashboard-card">
+            <div class="icon">⚙️</div>
             <h3>Settings</h3>
-
-            <p>
-                Manage your account and preferences
-            </p>
-
+            <p>Manage your account and preferences</p>
         </a>
-
-
     </div>
-
-
-    <footer>
-        © 2026 Travel Story • Your journey, your memories.
-    </footer>
-
+    <footer> © 2026 Travel Story • Your journey, your memories.</footer>
 </main>
-
 </body>
 </html>
