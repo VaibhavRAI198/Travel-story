@@ -37,6 +37,9 @@
                     <h2>Welcome Back 👋</h2>
                     <p>Login to continue your travel story.</p>
                 </div>
+                {% if error %}
+                <div class="error-message">{{ error }}</div>
+                {% endif %}
                 <form method="POST" action="/login">
                     <div class="form-group">
                         <label for="userid">Phone / Email</label>
