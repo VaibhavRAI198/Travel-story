@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import os
 import psycopg2
 
-app = Flask(**name**)
+app = Flask(__name__)
 
 app.secret_key = "travel_story"
 
@@ -432,7 +432,7 @@ finally:
 
 # =========================================================
 
-if **name** == "**main**":
+if __name__ == "__main__":
 app.run(
     host="0.0.0.0",
     port=int(os.environ.get("PORT", 5000)),
