@@ -40,7 +40,7 @@
                 {% if error %}
                 <div class="error-message">{{ error }}</div>
                 {% endif %}
-                <form method="POST" action="/'signup'">
+                <form method="POST" action="{{ url_for('signup') }}">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <div class="input-wrapper">
