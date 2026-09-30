@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css_folder/dashboard.css') }}">
-
 <section class="dashboard-home">
     <div class="dashboard-title">
         <div>
@@ -13,16 +12,14 @@
             <small id="currentTimezone"></small>
         </div>
     </div>
-
     <div class="dashboard-stats">
         <div class="stat-card">
             <div class="stat-icon">🌍</div>
             <div>
                 <span>My Cities</span>
-                <strong>0</strong>
+                <strong>{{ cities|length }}</strong>
             </div>
         </div>
-
         <div class="stat-card">
             <div class="stat-icon">📍</div>
             <div>
@@ -30,7 +27,6 @@
                 <strong>0</strong>
             </div>
         </div>
-
         <div class="stat-card">
             <div class="stat-icon">📸</div>
             <div>
@@ -38,7 +34,6 @@
                 <strong>0</strong>
             </div>
         </div>
-
         <div class="stat-card">
             <div class="stat-icon">❤️</div>
             <div>
@@ -48,35 +43,28 @@
         </div>
     </div>
 </section>
-
 <script>
 function updateDateTime() {
     const now = new Date();
-
     document.getElementById("currentDate").textContent = now.toLocaleDateString("en-IN", {
         weekday: "long",
         day: "2-digit",
         month: "short",
         year: "numeric"
     });
-
     document.getElementById("currentTime").textContent = now.toLocaleTimeString("en-IN", {
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
         hour12: true
     });
-
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const offset = -now.getTimezoneOffset();
     const sign = offset >= 0 ? "+" : "-";
     const hours = String(Math.floor(Math.abs(offset) / 60)).padStart(2, "0");
     const minutes = String(Math.abs(offset) % 60).padStart(2, "0");
-
-    document.getElementById("currentTimezone").textContent =
-        timezone + " • UTC" + sign + hours + ":" + minutes;
+    document.getElementById("currentTimezone").textContent = timezone + " • UTC" + sign + hours + ":" + minutes;
 }
-
 updateDateTime();
 setInterval(updateDateTime, 1000);
 </script>
