@@ -16,8 +16,8 @@
             <p>Enter the details of the city you want to add.</p>
         </div>
     </div>
-    <form method="POST" action="{{ url_for('add_city') }}" class="city-form">
-        <input type="hidden" value="{{{{username}}}}" name="user_id" required/>
+    <form method="POST" action="{{ url_for('add_city_function') }}" class="city-form">
+        <input type="hidden" value="{{username}}" name="user_id" required/>
         <div class="form-grid">
             <div class="form-group">
                 <label for="city_name">City Name</label>
