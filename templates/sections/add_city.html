@@ -17,9 +17,10 @@
         </div>
     </div>
     <form method="POST" action="{{ url_for('add_city') }}" class="city-form">
+        <input type="hidden" value="{{{{username}}}}" name="user_id" required/>
         <div class="form-grid">
             <div class="form-group">
-                <label for="city_name">City Name</label>{{username}}
+                <label for="city_name">City Name</label>
                 <div class="input-wrapper">
                     <span class="input-icon">🏙️</span>
                     <input type="text" id="city_name" name="city_name" placeholder="Enter city name" required>
