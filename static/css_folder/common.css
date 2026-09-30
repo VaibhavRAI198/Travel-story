@@ -6,9 +6,10 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f4f7fb;
-    color: #263238;
+    background: #0d0f12;
+    color: #e2e8f0;
 }
+
 .dashboard {
     display: flex;
     width: 100%;
@@ -23,448 +24,314 @@ body {
     width: 250px;
     height: 100vh;
     padding: 15px;
-    background: #ffffff;
-    border-right: 1px solid #dfe5ec;
+    background: #161a22;
+    border-right: 1px solid #272d37;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
+
 /* =========================================
    BORDERED SECTIONS
 ========================================= */
 .sidebar-box {
     position: relative;
-    border: 1.5px solid #d8dee8;
+    border: 1.5px solid #272d37;
     border-radius: 14px;
     padding: 18px 15px 15px;
-    background: #ffffff;
+    background: #1c212c;
     min-width: 0;
 }
 
-
 /* Section title on border */
-
 .sidebar-box legend {
     padding: 0 10px;
-
     margin-left: 10px;
-
     font-size: 13px;
     font-weight: 700;
-
-    color: #4d6bfe;
-
-    background: #ffffff;
-
+    color: #ffbe2e;
+    background: #1c212c;
     letter-spacing: 0.4px;
 }
-
 
 /* =========================================
    HEADER
 ========================================= */
-
 .header-box {
     flex-shrink: 0;
 }
 
-
 .header {
     display: flex;
     align-items: center;
-
     gap: 12px;
 }
-
 
 .logo-icon {
     width: 45px;
     height: 45px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 12px;
-
-    background: #eef2ff;
-
+    background: rgba(255, 190, 46, 0.15);
+    color: #ffbe2e;
     font-size: 23px;
 }
-
 
 .header h1 {
     font-size: 19px;
     font-weight: 700;
-
-    color: #202938;
+    color: #ffffff;
+    letter-spacing: 0.5px;
 }
-
 
 .header p {
     margin-top: 4px;
-
     font-size: 11px;
-
-    color: #8a94a6;
+    color: #94a3b8;
 }
-
 
 /* =========================================
    NAVIGATION
 ========================================= */
-
 .navigation-box {
     flex-shrink: 0;
 }
 
-
 .navigation {
     display: flex;
     flex-direction: column;
-
     gap: 6px;
 }
-
 
 .navigation a {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 5px 8px;
+    padding: 8px 10px;
     border-radius: 9px;
-
     text-decoration: none;
-
-    color: #4b5563;
-
-    font-size: 10px;
+    color: #cbd5e1;
+    font-size: 11px;
     font-weight: 500;
-
     transition: all 0.2s ease;
 }
 
-
 .navigation a span {
     width: 20px;
-
     text-align: center;
-
     font-size: 15px;
 }
 
-
 .navigation a:hover {
-    background: #f1f4ff;
-
-    color: #4d6bfe;
-
+    background: rgba(255, 190, 46, 0.12);
+    color: #ffbe2e;
     transform: translateX(3px);
 }
 
-
-/* Active dashboard */
-
+/* Active dashboard link */
 .navigation a:first-child {
-    background: #eef2ff;
-
-    color: #4d6bfe;
-
-    font-weight: 600;
+    background: #ffbe2e;
+    color: #0d0f12;
+    font-weight: 700;
 }
 
-
 /* Logout */
-
 .navigation .logout {
-    color: #e05252;
-
+    color: #ff6b6b;
     margin-top: 3px;
 }
 
-
 .navigation .logout:hover {
-    background: #fff1f1;
-
-    color: #d63d3d;
+    background: rgba(255, 107, 107, 0.15);
+    color: #ff8585;
 }
-
 
 /* =========================================
    CITY SECTION
 ========================================= */
-
 .city-box {
-
-    /*
-       Remaining sidebar height
-       goes to city section
-    */
-
     flex: 1;
-
     min-height: 0;
-
     display: flex;
     flex-direction: column;
 }
-
 
 /* =========================================
    CITY SCROLL AREA
 ========================================= */
-
 .city_area {
-
     flex: 1;
-
     min-height: 0;
-
     overflow-y: auto;
-
     padding-right: 5px;
-
     display: flex;
     flex-direction: column;
-
     gap: 6px;
 }
 
-
 /* Scrollbar */
-
 .city_area::-webkit-scrollbar {
     width: 5px;
 }
-
 
 .city_area::-webkit-scrollbar-track {
     background: transparent;
 }
 
-
 .city_area::-webkit-scrollbar-thumb {
-    background: #cbd3df;
-
+    background: #2d3545;
     border-radius: 10px;
 }
 
-
 .city_area::-webkit-scrollbar-thumb:hover {
-    background: #9da8b8;
+    background: #3f4a5f;
 }
-
 
 /* =========================================
    ADD CITY
 ========================================= */
-
 .add-city {
     display: flex;
     align-items: center;
-
     gap: 10px;
-
     padding: 10px 12px;
-
-    border: 1px dashed #aeb9ff;
-
+    border: 1px dashed #ffbe2e;
     border-radius: 9px;
-
     text-decoration: none;
-
-    color: #4d6bfe;
-
-    background: #f8f9ff;
-
+    color: #ffbe2e;
+    background: rgba(255, 190, 46, 0.05);
     font-size: 13px;
     font-weight: 600;
-
     transition: 0.2s ease;
 }
-
 
 .add-city span {
     font-size: 18px;
 }
 
-
 .add-city:hover {
-    background: #eef2ff;
-
-    border-color: #4d6bfe;
+    background: rgba(255, 190, 46, 0.15);
+    border-color: #ffd066;
 }
-
 
 /* =========================================
    CITY ITEMS
 ========================================= */
-
 .city-item {
     display: flex;
     align-items: center;
-
     gap: 10px;
-
     padding: 10px 12px;
-
     border-radius: 9px;
-
     text-decoration: none;
-
-    color: #4b5563;
-
+    color: #94a3b8;
     font-size: 13px;
-
     transition: all 0.2s ease;
 }
-
 
 .city-icon {
     width: 25px;
     height: 25px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 7px;
-
-    background: #f1f4f8;
-
+    background: #252c3a;
     font-size: 13px;
+    color: #e2e8f0;
 }
 
-
 .city-item:hover {
-    background: #f4f6fa;
-
-    color: #4d6bfe;
-
+    background: #252c3a;
+    color: #ffffff;
     transform: translateX(3px);
 }
 
-
 .city-item:hover .city-icon {
-    background: #eef2ff;
+    background: #ffbe2e;
+    color: #0d0f12;
 }
-
 
 /* =========================================
    MAIN CONTENT
 ========================================= */
-
 .content {
     flex: 1;
-
     height: 100vh;
-
     padding: 35px;
-
     overflow-y: auto;
-
-    background: #f6f8fc;
+    background: #0d0f12;
 }
-
 
 .content-header h2 {
     font-size: 28px;
-
-    color: #202938;
+    color: #ffffff;
 }
-
 
 .content-header p {
     margin-top: 6px;
-
-    color: #7b8494;
-
+    color: #94a3b8;
     font-size: 14px;
 }
-
 
 /* =========================================
    DASHBOARD CARD
 ========================================= */
-
 .dashboard-card {
     margin-top: 25px;
-
     padding: 25px;
-
-    background: #ffffff;
-
-    border: 1px solid #e2e7ef;
-
+    background: #161a22;
+    border: 1px solid #272d37;
     border-radius: 15px;
-
-    box-shadow:
-        0 4px 15px rgba(40, 50, 70, 0.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
-
 
 .dashboard-card h3 {
     font-size: 18px;
-
-    color: #303846;
+    color: #ffffff;
 }
-
 
 .dashboard-card p {
     margin-top: 8px;
-
     font-size: 13px;
-
-    color: #7c8797;
+    color: #94a3b8;
 }
-
 
 /* =========================================
    MOBILE
 ========================================= */
-
 @media (max-width: 768px) {
-
     .left {
         width: 240px;
-
         padding: 12px;
-
         gap: 12px;
     }
-
 
     .content {
         padding: 20px;
     }
 
-
     .header h1 {
         font-size: 16px;
     }
 
-
     .header p {
         font-size: 10px;
     }
-
 }
 
-
 @media (max-width: 550px) {
-
     .left {
         width: 210px;
     }
-
 
     .content {
         padding: 15px;
     }
 
-
     .content-header h2 {
         font-size: 22px;
     }
-
 }
