@@ -1,481 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css_folder/common.css') }}"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_folder/common.css') }}">
     <title>Travel Story</title>
-
 </head>
-
-
 <body>
-
-
 <div class="dashboard">
-
-
     <!-- =====================================================
          LEFT SIDEBAR
     ====================================================== -->
-
     <aside class="left">
-
-
-        <!-- =================================================
-             HEADER
-        ================================================== -->
-
         <fieldset class="sidebar-box header-box">
-
             <div class="header">
-
-
-                <div class="logo-icon">
-                    ✈️
-                </div>
-
-
+                <div class="logo-icon">✈️</div>
                 <div class="header-text">
-
-                    <h1>
-                        Travel Story
-                    </h1>
-
-                    <p>
-                        Welcome, {{ user_data["full_name"] }}
-                    </p>
-
+                    <h1>Travel Story</h1>
+                    <p>Welcome {{ user_data["full_name"] }} !</p>
                 </div>
-
-
             </div>
-
         </fieldset>
-
-
-
-        <!-- =================================================
-             MY SETTING / NAVIGATION
-        ================================================== -->
 
         <fieldset class="sidebar-box navigation-box">
-
             <legend>Navigation</legend>
-
-
             <div class="navigation">
-
-
-                <!-- Dashboard -->
-
-                <a
-                    href="{{ url_for('dashboard') }}"
-                    class="nav-btn active"
-                    title="Dashboard"
-                >
-
-                    <span>
-                        🏠
-                    </span>
-
-                </a>
-
-
-
-                <!-- Profile -->
-
-                <a
-                    href="{{ url_for('my_profile') }}"
-                    class="nav-btn"
-                    title="My Profile"
-                >
-
-                    <span>
-                        👤
-                    </span>
-
-                </a>
-
-
-
-                <!-- Settings -->
-
-                <a
-                    href="{{ url_for('setting') }}"
-                    class="nav-btn"
-                    title="Settings"
-                >
-
-                    <span>
-                        ⚙️
-                    </span>
-
-                </a>
-
-
-
-                <!-- About -->
-
-                <a
-                    href="{{ url_for('about_me') }}"
-                    class="nav-btn"
-                    title="About Me"
-                >
-
-                    <span>
-                        ℹ️
-                    </span>
-
-                </a>
-
-
-
-                <!-- Logout -->
-
-                <a
-                    href="{{ url_for('logout') }}"
-                    class="nav-btn logout"
-                    title="Logout"
-                >
-
-                    <span>
-                        🚪
-                    </span>
-
-                </a>
-
-
-
-                <!-- =================================================
-                     MOBILE CITY MENU
-                ================================================== -->
-
-                <button
-                    type="button"
-                    class="nav-btn menu-btn"
-                    id="cityMenuButton"
-                    onclick="toggleCityMenu()"
-                    title="My Cities"
-                >
-
-                    <span>
-                        ☰
-                    </span>
-
-                </button>
-
-
+                <a href="{{ url_for('dashboard') }}" class="nav-btn active" title="Dashboard"><span>🏠</span></a>
+                <a href="{{ url_for('my_profile') }}" class="nav-btn" title="My Profile"><span>👤</span></a>
+                <a href="{{ url_for('setting') }}" class="nav-btn" title="Settings"><span>⚙️</span></a>
+                <a href="{{ url_for('about_me') }}" class="nav-btn" title="About Me"><span>ℹ️</span></a>
+                <a href="{{ url_for('logout') }}" class="nav-btn logout" title="Logout"><span>🚪</span></a>
+                <!-- MOBILE CITY MENU -->
+                <button type="button" class="nav-btn menu-btn" id="cityMenuButton" onclick="toggleCityMenu()" title="My Cities"><span>☰</span></button>
             </div>
-
         </fieldset>
-
-
-
-        <!-- =================================================
-             CITY SECTION
-             
-             Desktop:
-             Always visible.
-
-             Mobile:
-             Hidden until ☰ is clicked.
-        ================================================== -->
-
-        <section
-            class="city-section"
-            id="citySection"
-        >
-
-        <legend>My Cities</legend>
-            <!-- CITY HEADER -->
-
+        <section class="city-section" id="citySection">
             <div class="city-header">
-
-
-
-                <a
-                    href="#"
-                    class="add-city-small"
-                >
-                    ＋ Add City
-                </a>
-
-
+                <a href="#" class="city-item add-city"><span class="city-icon">＋</span><span>Add City</span></a>
             </div>
-
-
-
-            <!-- CITY LIST -->
-
             <div class="city_area">
-
-
-                <!-- ADD CITY -->
-
-                <a
-                    href="#"
-                    class="city-item add-city"
-                >
-
-                    <span class="city-icon">
-                        ＋
-                    </span>
-
-                    <span>
-                        Add City
-                    </span>
-
-                </a>
-
-
-
-                <!-- CITY -->
-
-                <a
-                    href="#"
-                    class="city-item"
-                >
-
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        Delhi
-                    </span>
-
-                </a>
-
-
-
-                <a
-                    href="#"
-                    class="city-item"
-                >
-
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        Mumbai
-                    </span>
-
-                </a>
-
-
-
-                <a
-                    href="#"
-                    class="city-item"
-                >
-
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        Jaipur
-                    </span>
-
-                </a>
-
-
-
-                <a
-                    href="#"
-                    class="city-item"
-                >
-
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        Manali
-                    </span>
-
-                </a>
-
-
-
-                <a
-                    href="#"
-                    class="city-item"
-                >
-
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        Goa
-                    </span>
-
-                </a>
-
-
-
-                <a
-                    href="#"
-                    class="city-item"
-                >
-
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        Bengaluru
-                    </span>
-
-                </a>
-
-
-
-                <a
-                    href="#"
-                    class="city-item"
-                >
-
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        Shimla
-                    </span>
-
-                </a>
-
-
-
-                <a
-                    href="#"
-                    class="city-item"
-                >
-
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        Chandigarh
-                    </span>
-
-                </a>
-
-
-
-                <a
-                    href="#"
-                    class="city-item"
-                >
-
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        Kolkata
-                    </span>
-
-                </a>
-
-
+                <a href="#" class="city-item"><span class="city-icon">📍</span><span>Delhi</span></a>
             </div>
-
-
         </section>
-
-
     </aside>
-
-
-
-    <!-- =====================================================
-         MAIN CONTENT
-    ====================================================== -->
-
     <main class="content">
-
-
-        <!-- PAGE HEADER -->
-
-        <div class="content-header">
-
-            <h2>
-                Dashboard
-            </h2>
-
-            <p>
-                Welcome to your Travel Story dashboard.
-            </p>
-
-        </div>
-
-
-
-        <!-- DASHBOARD CARD -->
-
-        <div class="dashboard-card">
-
-            <h3>
-                My Travel Story
-            </h3>
-
-            <p>
-                Select a city from the left side to explore
-                your travel stories.
-            </p>
-
-        </div>
-
-
     </main>
-
-
 </div>
-
-
-
-<!-- =====================================================
-     JAVASCRIPT
-====================================================== -->
-
 <script>
-
 function toggleCityMenu() {
-
-    const citySection =
-        document.getElementById("citySection");
-
-    const menuButton =
-        document.getElementById("cityMenuButton");
-
-
+    const citySection = document.getElementById("citySection");
+    const menuButton = document.getElementById("cityMenuButton");
     citySection.classList.toggle("mobile-show");
-
-
     menuButton.classList.toggle("menu-active");
-
 }
-
 </script>
-
-
 </body>
-
 </html>
