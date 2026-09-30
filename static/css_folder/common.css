@@ -9,31 +9,46 @@
 }
 
 
+/* =========================================================
+   BODY
+========================================================= */
+
 body {
+
     font-family: Arial, Helvetica, sans-serif;
+
     background: #0d0f12;
+
     color: #e2e8f0;
+
 }
 
 
 /* =========================================================
-   DASHBOARD
+   MAIN DASHBOARD
 ========================================================= */
 
 .dashboard {
+
     display: flex;
+
     width: 100%;
+
     height: 100vh;
+
     overflow: hidden;
+
 }
 
 
 /* =========================================================
-   LEFT SIDEBAR
+   LEFT AREA
 ========================================================= */
 
 .left {
+
     width: 250px;
+
     height: 100vh;
 
     padding: 15px;
@@ -43,20 +58,26 @@ body {
     border-right: 1px solid #272d37;
 
     display: flex;
+
     flex-direction: column;
 
     gap: 12px;
+
 }
 
 
 /* =========================================================
-   BORDERED SECTIONS
+   COMMON BOX
 ========================================================= */
 
 .sidebar-box {
+
     position: relative;
 
+    width: 100%;
+
     border: 1.5px solid #272d37;
+
     border-radius: 14px;
 
     padding: 18px 15px 15px;
@@ -64,10 +85,12 @@ body {
     background: #1c212c;
 
     min-width: 0;
+
 }
 
 
 .sidebar-box legend {
+
     padding: 0 10px;
 
     margin-left: 10px;
@@ -80,7 +103,6 @@ body {
 
     background: #1c212c;
 
-    letter-spacing: 0.4px;
 }
 
 
@@ -89,76 +111,86 @@ body {
 ========================================================= */
 
 .header-box {
+
+    width: 100%;
+
     flex-shrink: 0;
+
 }
 
 
 .header {
+
+    width: 100%;
+
     display: flex;
 
     align-items: center;
 
     gap: 12px;
+
 }
 
 
 .logo-icon {
+
     width: 45px;
+
     height: 45px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     border-radius: 12px;
 
     background: rgba(255, 190, 46, 0.15);
 
-    color: #ffbe2e;
-
     font-size: 23px;
 
     flex-shrink: 0;
+
 }
 
 
 .header h1 {
-    font-size: 19px;
 
-    font-weight: 700;
+    font-size: 19px;
 
     color: #ffffff;
 
-    letter-spacing: 0.5px;
 }
 
 
 .header p {
+
     margin-top: 4px;
 
     font-size: 11px;
 
     color: #94a3b8;
+
 }
 
 
 /* =========================================================
-   NAVIGATION BOX
+   NAVIGATION AREA
 ========================================================= */
 
 .navigation-box {
-    position: relative;
+
+    width: 100%;
 
     flex-shrink: 0;
+
 }
 
 
-/* =========================================================
-   NAVIGATION - ONE ROW
-========================================================= */
-
 .navigation {
+
+    width: 100%;
 
     display: flex;
 
@@ -173,35 +205,34 @@ body {
 }
 
 
-/* =========================================================
-   NAVIGATION BUTTONS
-========================================================= */
-
 .nav-btn {
 
-    width: 32px;
-    height: 32px;
+    width: 34px;
+
+    height: 34px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     border: none;
 
-    border-radius: 8px;
-
-    text-decoration: none;
+    border-radius: 9px;
 
     background: transparent;
 
     color: #cbd5e1;
 
+    text-decoration: none;
+
     font-size: 15px;
 
     cursor: pointer;
 
-    transition: all 0.2s ease;
+    transition: 0.2s ease;
+
 }
 
 
@@ -216,9 +247,7 @@ body {
 }
 
 
-/* =========================================================
-   ACTIVE DASHBOARD
-========================================================= */
+/* ACTIVE */
 
 .nav-btn.active {
 
@@ -226,23 +255,10 @@ body {
 
     color: #0d0f12;
 
-    font-weight: 700;
-
 }
 
 
-.nav-btn.active:hover {
-
-    background: #ffd066;
-
-    color: #0d0f12;
-
-}
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
+/* LOGOUT */
 
 .nav-btn.logout {
 
@@ -261,218 +277,27 @@ body {
 
 
 /* =========================================================
-   THREE LINE MENU BUTTON
+   ☰ MENU
 ========================================================= */
+
+/*
+   Hidden on desktop.
+*/
 
 .menu-btn {
 
-    color: #ffbe2e;
-
-}
-
-
-.menu-btn:hover {
-
-    background: rgba(255, 190, 46, 0.15);
-
-}
-
-
-/* =========================================================
-   CITY DROPDOWN
-========================================================= */
-
-.city-dropdown {
-
-    position: absolute;
-
-    top: calc(100% + 8px);
-
-    right: 10px;
-
-    width: 200px;
-
-    max-height: 300px;
-
-    overflow-y: auto;
-
-    padding: 8px;
-
-    background: #161a22;
-
-    border: 1px solid #343c4b;
-
-    border-radius: 12px;
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.55);
-
-    z-index: 1000;
-
     display: none;
-}
-
-
-/* Show dropdown */
-
-.city-dropdown.show {
-
-    display: block;
-
-    animation: dropdownShow 0.18s ease;
-
-}
-
-
-@keyframes dropdownShow {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateY(-5px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-
-    }
 
 }
 
 
 /* =========================================================
-   DROPDOWN CITY ITEMS
+   CITY SECTION
 ========================================================= */
 
-.dropdown-city {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 9px;
+.city-section {
 
     width: 100%;
-
-    padding: 9px 10px;
-
-    margin-bottom: 4px;
-
-    border-radius: 8px;
-
-    text-decoration: none;
-
-    color: #cbd5e1;
-
-    font-size: 12px;
-
-    transition: all 0.2s ease;
-
-}
-
-
-.dropdown-city:last-child {
-
-    margin-bottom: 0;
-
-}
-
-
-.dropdown-city:hover {
-
-    background: #252c3a;
-
-    color: #ffffff;
-
-}
-
-
-/* =========================================================
-   ADD CITY IN DROPDOWN
-========================================================= */
-
-.dropdown-city.add-city {
-
-    color: #ffbe2e;
-
-    background: rgba(255, 190, 46, 0.06);
-
-    border: 1px dashed #ffbe2e;
-
-    margin-bottom: 8px;
-
-}
-
-
-.dropdown-city.add-city:hover {
-
-    background: rgba(255, 190, 46, 0.15);
-
-}
-
-
-/* =========================================================
-   CITY ICON
-========================================================= */
-
-.city-icon {
-
-    width: 24px;
-
-    height: 24px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 6px;
-
-    background: #252c3a;
-
-    font-size: 11px;
-
-}
-
-
-/* =========================================================
-   DROPDOWN SCROLLBAR
-========================================================= */
-
-.city-dropdown::-webkit-scrollbar {
-
-    width: 5px;
-
-}
-
-
-.city-dropdown::-webkit-scrollbar-track {
-
-    background: transparent;
-
-}
-
-
-.city-dropdown::-webkit-scrollbar-thumb {
-
-    background: #2d3545;
-
-    border-radius: 10px;
-
-}
-
-
-/* =========================================================
-   MY CITY SECTION
-========================================================= */
-
-.city-box {
 
     flex: 1;
 
@@ -481,6 +306,66 @@ body {
     display: flex;
 
     flex-direction: column;
+
+    border: 1.5px solid #272d37;
+
+    border-radius: 14px;
+
+    background: #1c212c;
+
+    padding: 14px;
+
+}
+
+
+/* =========================================================
+   CITY HEADER
+========================================================= */
+
+.city-header {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #272d37;
+
+    margin-bottom: 8px;
+
+}
+
+
+.city-header span {
+
+    color: #ffbe2e;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.add-city-small {
+
+    color: #ffbe2e;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+}
+
+
+.add-city-small:hover {
+
+    color: #ffd066;
 
 }
 
@@ -491,13 +376,13 @@ body {
 
 .city_area {
 
+    width: 100%;
+
     flex: 1;
 
     min-height: 0;
 
     overflow-y: auto;
-
-    padding-right: 5px;
 
     display: flex;
 
@@ -505,8 +390,12 @@ body {
 
     gap: 6px;
 
+    padding-right: 4px;
+
 }
 
+
+/* SCROLLBAR */
 
 .city_area::-webkit-scrollbar {
 
@@ -531,9 +420,78 @@ body {
 }
 
 
-.city_area::-webkit-scrollbar-thumb:hover {
+/* =========================================================
+   CITY ITEM
+========================================================= */
 
-    background: #3f4a5f;
+.city-item {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 9px 10px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+
+    transition: 0.2s ease;
+
+}
+
+
+.city-item:hover {
+
+    background: #252c3a;
+
+    color: #ffffff;
+
+    transform: translateX(3px);
+
+}
+
+
+/* =========================================================
+   CITY ICON
+========================================================= */
+
+.city-icon {
+
+    width: 27px;
+
+    height: 27px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #252c3a;
+
+    font-size: 13px;
+
+    flex-shrink: 0;
+
+}
+
+
+.city-item:hover .city-icon {
+
+    background: #ffbe2e;
+
+    color: #0d0f12;
 
 }
 
@@ -542,47 +500,20 @@ body {
    ADD CITY
 ========================================================= */
 
-.add-city {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding: 10px 12px;
-
-    border: 1px dashed #ffbe2e;
-
-    border-radius: 9px;
-
-    text-decoration: none;
+.city-item.add-city {
 
     color: #ffbe2e;
 
+    border: 1px dashed #ffbe2e;
+
     background: rgba(255, 190, 46, 0.05);
 
-    font-size: 13px;
-
-    font-weight: 600;
-
-    transition: 0.2s ease;
-
 }
 
 
-.add-city span {
-
-    font-size: 18px;
-
-}
-
-
-.add-city:hover {
+.city-item.add-city:hover {
 
     background: rgba(255, 190, 46, 0.15);
-
-    border-color: #ffd066;
 
 }
 
@@ -642,9 +573,6 @@ body {
 
     border-radius: 15px;
 
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.4);
-
 }
 
 
@@ -669,32 +597,165 @@ body {
 
 
 /* =========================================================
-   MOBILE
+   PHONE
 ========================================================= */
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
 
-    .left {
 
-        width: 240px;
+    /* ================================
+       FULL WIDTH SIDEBAR
+    ================================= */
 
-        padding: 12px;
+    .dashboard {
 
-        gap: 12px;
+        display: block;
+
+        height: auto;
+
+        min-height: 100vh;
+
+        overflow: visible;
 
     }
 
 
+    .left {
+
+        width: 100%;
+
+        height: auto;
+
+        min-height: 100vh;
+
+        padding: 10px;
+
+        border-right: none;
+
+    }
+
+
+    /* ================================
+       HEADER 100%
+    ================================= */
+
+    .header-box {
+
+        width: 100%;
+
+    }
+
+
+    .header {
+
+        width: 100%;
+
+    }
+
+
+    /* ================================
+       BUTTON AREA 100%
+    ================================= */
+
+    .navigation-box {
+
+        width: 100%;
+
+    }
+
+
+    .navigation {
+
+        width: 100%;
+
+        justify-content: space-around;
+
+    }
+
+
+    /* ================================
+       SHOW ☰ ONLY PHONE
+    ================================= */
+
+    .menu-btn {
+
+        display: flex;
+
+    }
+
+
+    /* ================================
+       CITY AREA
+    ================================= */
+
+    .city-section {
+
+        width: 100%;
+
+        height: 400px;
+
+        flex: none;
+
+    }
+
+
+    /* ================================
+       MAIN CONTENT
+    ================================= */
+
     .content {
+
+        width: 100%;
+
+        height: auto;
+
+        min-height: 100vh;
 
         padding: 20px;
 
     }
 
 
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 380px) {
+
+
+    .left {
+
+        padding: 8px;
+
+    }
+
+
+    .sidebar-box {
+
+        padding-left: 10px;
+
+        padding-right: 10px;
+
+    }
+
+
+    .nav-btn {
+
+        width: 30px;
+
+        height: 30px;
+
+        font-size: 14px;
+
+    }
+
+
     .header h1 {
 
-        font-size: 16px;
+        font-size: 17px;
 
     }
 
@@ -702,42 +763,6 @@ body {
     .header p {
 
         font-size: 10px;
-
-    }
-
-}
-
-
-@media (max-width: 550px) {
-
-    .left {
-
-        width: 210px;
-
-    }
-
-
-    .content {
-
-        padding: 15px;
-
-    }
-
-
-    .content-header h2 {
-
-        font-size: 22px;
-
-    }
-
-
-    .nav-btn {
-
-        width: 29px;
-
-        height: 29px;
-
-        font-size: 14px;
 
     }
 
