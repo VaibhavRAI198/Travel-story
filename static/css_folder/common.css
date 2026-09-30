@@ -694,13 +694,11 @@ body {
 
 }
 
-
 /* =========================================================
-   MOBILE
+   MOBILE RESPONSIVE
 ========================================================= */
 
 @media (max-width: 600px) {
-
 
     /* =====================================================
        FULL PAGE
@@ -708,7 +706,9 @@ body {
 
     .dashboard {
 
-        display: block;
+        display: flex;
+
+        flex-direction: column;
 
         width: 100%;
 
@@ -731,13 +731,15 @@ body {
 
         height: auto;
 
-        min-height: 100vh;
+        min-height: 0;
 
         padding: 10px;
 
         border-right: none;
 
-        gap: 10px;
+        gap: 8px;
+
+        flex-shrink: 0;
 
     }
 
@@ -750,12 +752,18 @@ body {
 
         width: 100%;
 
+        margin: 0;
+
     }
 
 
     .header {
 
         width: 100%;
+
+        display: flex;
+
+        align-items: center;
 
     }
 
@@ -768,6 +776,8 @@ body {
 
         width: 100%;
 
+        margin: 0;
+
     }
 
 
@@ -775,7 +785,15 @@ body {
 
         width: 100%;
 
+        display: flex;
+
+        flex-direction: row;
+
+        align-items: center;
+
         justify-content: space-around;
+
+        gap: 4px;
 
     }
 
@@ -801,11 +819,15 @@ body {
 
         width: 100%;
 
-        height: 400px;
+        height: 350px;
+
+        min-height: 0;
 
         flex: none;
 
-        margin-top: 0;
+        margin: 0;
+
+        padding: 12px;
 
     }
 
@@ -818,8 +840,9 @@ body {
 
         display: flex;
 
-        animation:
-            citySlideDown 0.2s ease;
+        width: 100%;
+
+        animation: citySlideDown 0.2s ease;
 
     }
 
@@ -850,6 +873,38 @@ body {
 
 
     /* =====================================================
+       CITY HEADER
+    ====================================================== */
+
+    .city-header {
+
+        width: 100%;
+
+        flex-shrink: 0;
+
+    }
+
+
+    /* =====================================================
+       CITY LIST SCROLL
+    ====================================================== */
+
+    .city_area {
+
+        width: 100%;
+
+        flex: 1;
+
+        min-height: 0;
+
+        overflow-y: auto;
+
+        overflow-x: hidden;
+
+    }
+
+
+    /* =====================================================
        MAIN CONTENT
     ====================================================== */
 
@@ -861,7 +916,24 @@ body {
 
         min-height: 100vh;
 
-        padding: 20px;
+        padding: 15px;
+
+        margin: 0;
+
+        flex: none;
+
+    }
+
+
+    /* =====================================================
+       DASHBOARD HEADER
+    ====================================================== */
+
+    .content-header {
+
+        margin: 0;
+
+        padding: 0;
 
     }
 
@@ -869,6 +941,30 @@ body {
     .content-header h2 {
 
         font-size: 24px;
+
+        margin: 0;
+
+    }
+
+
+    .content-header p {
+
+        margin-top: 5px;
+
+        font-size: 13px;
+
+    }
+
+
+    /* =====================================================
+       DASHBOARD CARD
+    ====================================================== */
+
+    .dashboard-card {
+
+        margin-top: 15px;
+
+        padding: 18px;
 
     }
 
@@ -882,12 +978,22 @@ body {
 @media (max-width: 380px) {
 
 
+    /* =====================================================
+       SIDEBAR
+    ====================================================== */
+
     .left {
 
         padding: 8px;
 
+        gap: 6px;
+
     }
 
+
+    /* =====================================================
+       SIDEBAR BOX
+    ====================================================== */
 
     .sidebar-box {
 
@@ -897,6 +1003,10 @@ body {
 
     }
 
+
+    /* =====================================================
+       NAVIGATION BUTTONS
+    ====================================================== */
 
     .nav-btn {
 
@@ -909,6 +1019,10 @@ body {
     }
 
 
+    /* =====================================================
+       LOGO
+    ====================================================== */
+
     .logo-icon {
 
         width: 40px;
@@ -919,6 +1033,10 @@ body {
 
     }
 
+
+    /* =====================================================
+       HEADER TEXT
+    ====================================================== */
 
     .header h1 {
 
@@ -934,9 +1052,42 @@ body {
     }
 
 
+    /* =====================================================
+       CITY SECTION
+    ====================================================== */
+
     .city-section {
 
-        height: 350px;
+        height: 320px;
+
+        padding: 10px;
+
+    }
+
+
+    /* =====================================================
+       CONTENT
+    ====================================================== */
+
+    .content {
+
+        padding: 12px;
+
+    }
+
+
+    .content-header h2 {
+
+        font-size: 22px;
+
+    }
+
+
+    .dashboard-card {
+
+        margin-top: 12px;
+
+        padding: 15px;
 
     }
 
