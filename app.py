@@ -536,7 +536,7 @@ def add_city_function():
                 cursor.close()
             if conn:
                 conn.close()
-    return render_template("add_city.html",result=result)
+    return render_template("dashboard.html",add_city_result=result)
 
 
 
