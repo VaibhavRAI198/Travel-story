@@ -1,44 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css_folder/common.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css_folder/common.css') }}">
+
     <title>Travel Story</title>
 </head>
+
 <body>
+
 <div class="dashboard">
+
     <!-- ================= LEFT SIDEBAR ================= -->
     <aside class="left">
-        <!-- HEADER AREA -->
+
+        <!-- ================= HEADER AREA ================= -->
         <fieldset class="sidebar-box header-box">
+
             <div class="header">
-                <div class="logo-icon">✈️</div>
+
+                <div class="logo-icon">
+                    ✈️
+                </div>
+
                 <div>
                     <h1>Travel Story</h1>
-                    <p>Welcome , {{user_data["full_name"]}}</p>
+
+                    <p>
+                        Welcome, {{ user_data["full_name"] }}
+                    </p>
                 </div>
+
             </div>
+
         </fieldset>
-        <!-- MY SETTINGS / NAVIGATION -->
+
+
+        <!-- ================= MY SETTINGS ================= -->
         <fieldset class="sidebar-box navigation-box">
+
             <legend>My Setting</legend>
+
             <div class="navigation">
-                <a href="{{ url_for('dashboard') }}"><span>🏠</span>Dashboard</a>
-                <a href="{{ url_for('my_profile') }}"><span>👤</span>My Profile</a>
-                <a href="{{ url_for('setting') }}"><span>⚙️</span>Setting</a>
-                <a href="{{ url_for('about_me') }}"><span>ℹ️</span>About Me</a>
-                <a href="{{ url_for('logout') }}" class="logout"><span>🚪</span>Logout</a>
+
+                <!-- Dashboard -->
+                <a href="{{ url_for('dashboard') }}"
+                   class="nav-btn active"
+                   title="Dashboard">
+                    <span>🏠</span>
+                </a>
+
+                <!-- Profile -->
+                <a href="{{ url_for('my_profile') }}"
+                   class="nav-btn"
+                   title="My Profile">
+                    <span>👤</span>
+                </a>
+
+                <!-- Settings -->
+                <a href="{{ url_for('setting') }}"
+                   class="nav-btn"
+                   title="Settings">
+                    <span>⚙️</span>
+                </a>
+
+                <!-- About -->
+                <a href="{{ url_for('about_me') }}"
+                   class="nav-btn"
+                   title="About Me">
+                    <span>ℹ️</span>
+                </a>
+
+                <!-- Logout -->
+                <a href="{{ url_for('logout') }}"
+                   class="nav-btn logout"
+                   title="Logout">
+                    <span>🚪</span>
+                </a>
+
+                <!-- Three Line City Menu -->
+                <button type="button"
+                        class="nav-btn menu-btn"
+                        onclick="toggleCityMenu()"
+                        title="My Cities">
+                    <span>☰</span>
+                </button>
+
             </div>
+
+
+            <!-- ================= CITY DROPDOWN ================= -->
+            <div class="city-dropdown" id="cityDropdown">
+
+                <!-- Add City -->
+                <a href="#"
+                   class="dropdown-city add-city">
+                    <span>＋</span>
+                    <span>Add City</span>
+                </a>
+
+
+                <!-- City List -->
+                <div class="dropdown-city-list">
+
+                    <!-- Example cities -->
+                    <a href="#" class="dropdown-city">
+                        <span class="city-icon">📍</span>
+                        <span>Delhi</span>
+                    </a>
+
+                    <a href="#" class="dropdown-city">
+                        <span class="city-icon">📍</span>
+                        <span>Mumbai</span>
+                    </a>
+
+                    <a href="#" class="dropdown-city">
+                        <span class="city-icon">📍</span>
+                        <span>Jaipur</span>
+                    </a>
+
+                    <a href="#" class="dropdown-city">
+                        <span class="city-icon">📍</span>
+                        <span>Manali</span>
+                    </a>
+
+                    <a href="#" class="dropdown-city">
+                        <span class="city-icon">📍</span>
+                        <span>Goa</span>
+                    </a>
+
+                    <a href="#" class="dropdown-city">
+                        <span class="city-icon">📍</span>
+                        <span>Bengaluru</span>
+                    </a>
+
+                </div>
+
+            </div>
+
         </fieldset>
-        <!-- CITY AREA -->
+
+
+        <!-- ================= CITY AREA ================= -->
         <fieldset class="sidebar-box city-box">
+
             <legend>My City</legend>
+
             <div class="city_area">
-                <a href="#" class="add-city"><span>＋</span>Add City</a>
+
+                <a href="#" class="add-city">
+                    <span>＋</span>
+                    Add City
+                </a>
+
+                <!-- Your dynamic city list can come here -->
+
             </div>
+
         </fieldset>
+
     </aside>
+
+
     <!-- ================= MAIN CONTENT ================= -->
 
     <main class="content">
@@ -67,10 +194,41 @@
 
     </main>
 
-
 </div>
 
 
-</body>
+<!-- ================= JAVASCRIPT ================= -->
 
+<script>
+
+function toggleCityMenu() {
+
+    const menu = document.getElementById("cityDropdown");
+
+    menu.classList.toggle("show");
+
+}
+
+
+/* Close dropdown when clicking outside */
+
+document.addEventListener("click", function(event) {
+
+    const menu = document.getElementById("cityDropdown");
+    const button = document.querySelector(".menu-btn");
+
+    if (
+        !menu.contains(event.target) &&
+        !button.contains(event.target)
+    ) {
+
+        menu.classList.remove("show");
+
+    }
+
+});
+
+</script>
+
+</body>
 </html>
