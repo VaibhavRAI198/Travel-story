@@ -18,6 +18,7 @@
                 </div>
             </div>
         </fieldset>
+
         <fieldset class="sidebar-box navigation-box">
             <div class="navigation">
                 <a href="{{ url_for('dashboard') }}" class="nav-btn {% if section == 'dashboard' %}active{% endif %}" title="Dashboard"><span>🏠</span></a>
@@ -28,15 +29,24 @@
                 <button type="button" class="nav-btn menu-btn" id="cityMenuButton" onclick="toggleCityMenu()" title="My Cities"><span>☰</span></button>
             </div>
         </fieldset>
+
         <section class="city-section" id="citySection">
             <div class="city-header">
-                <a href="{{ url_for('ad_city') }}" class="city-item add-city {% if section == 'add_city' %}active{% endif %}"><span class="city-icon">＋</span><span>Add City</span></a>
+                <a href="{{ url_for('add_city') }}" class="city-item add-city {% if section == 'add_city' %}active{% endif %}">
+                    <span class="city-icon">＋</span>
+                    <span>Add City</span>
+                </a>
             </div>
+
             <div class="city_area">
-                <a href="{{ url_for('city') }}" class="city-item {% if section == 'city' %}active{% endif %}"><span class="city-icon">📍</span><span>Delhi</span></a>
+                <a href="{{ url_for('city') }}" class="city-item {% if section == 'city' %}active{% endif %}">
+                    <span class="city-icon">📍</span>
+                    <span>Delhi</span>
+                </a>
             </div>
         </section>
     </aside>
+
     <main class="content">
         {% if section == "dashboard" %}
             {% include "sections/my_dashboard.html" %}
@@ -51,10 +61,14 @@
         {% elif section == "add_city" %}
             {% include "sections/add_city.html" %}
         {% else %}
-            Not selected any sections ! Please select.
+            <div class="content-box">
+                <h2>No Section Selected</h2>
+                <p>Please select a section.</p>
+            </div>
         {% endif %}
     </main>
 </div>
+
 <script>
 function toggleCityMenu() {
     const citySection = document.getElementById("citySection");
