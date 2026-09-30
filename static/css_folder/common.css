@@ -1,25 +1,14 @@
-/* =========================================
-   RESET
-========================================= */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f4f7fb;
     color: #263238;
 }
-
-
-/* =========================================
-   MAIN DASHBOARD
-========================================= */
-
 .dashboard {
     display: flex;
     width: 100%;
@@ -27,25 +16,18 @@ body {
     overflow: hidden;
 }
 
-
 /* =========================================
    LEFT SIDEBAR
 ========================================= */
-
 .left {
-    width: 300px;
+    width: 250px;
     height: 100vh;
-
-    padding: 18px;
-
+    padding: 8px;
     background: #ffffff;
-
     border-right: 1px solid #dfe5ec;
-
     display: flex;
     flex-direction: column;
-
-    gap: 18px;
+    gap: 8px;
 }
 
 
