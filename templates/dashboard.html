@@ -1,241 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css_folder/common.css') }}"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_folder/common.css') }}">
     <title>Travel Story</title>
-
 </head>
-
-
 <body>
-
-
 <div class="dashboard">
-
-
-    <!-- =====================================================
-         LEFT SIDEBAR
-    ====================================================== -->
-
     <aside class="left">
-
-
-        <!-- ================= HEADER ================= -->
-
         <fieldset class="sidebar-box header-box">
-
             <div class="header">
-
-                <div class="logo-icon">
-                    ✈️
-                </div>
-
+                <div class="logo-icon">✈️</div>
                 <div class="header-text">
-
-                    <h1>
-                        Travel Story
-                    </h1>
-
-                    <p>
-                        Welcome {{ user_data["full_name"] }} !
-                    </p>
-
+                    <h1>Travel Story</h1>
+                    <p>Welcome {{ user_data["full_name"] }} !</p>
                 </div>
-
             </div>
-
         </fieldset>
-
-
-        <!-- ================= NAVIGATION ================= -->
-
         <fieldset class="sidebar-box navigation-box">
-
             <div class="navigation">
-
-
-                <a
-                    href="{{ url_for('dashboard') }}"
-                    class="nav-btn {% if section == 'dashboard' %}active{% endif %}"
-                    title="Dashboard"
-                >
-                    <span>🏠</span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('my_profile') }}"
-                    class="nav-btn {% if section == 'my_profile' %}active{% endif %}"
-                    title="My Profile"
-                >
-                    <span>👤</span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('setting') }}"
-                    class="nav-btn {% if section == 'setting' %}active{% endif %}"
-                    title="Settings"
-                >
-                    <span>⚙️</span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('about_me') }}"
-                    class="nav-btn {% if section == 'about_me' %}active{% endif %}"
-                    title="About Me"
-                >
-                    <span>ℹ️</span>
-                </a>
-
-
-                <a
-                    href="{{ url_for('logout') }}"
-                    class="nav-btn logout"
-                    title="Logout"
-                >
-                    <span>🚪</span>
-                </a>
-
-
-                <!-- MOBILE CITY MENU -->
-
-                <button
-                    type="button"
-                    class="nav-btn menu-btn"
-                    id="cityMenuButton"
-                    onclick="toggleCityMenu()"
-                    title="My Cities"
-                >
-                    <span>☰</span>
-                </button>
-
-
+                <a href="{{ url_for('dashboard') }}" class="nav-btn {% if section == 'dashboard' %}active{% endif %}" title="Dashboard"><span>🏠</span></a>
+                <a href="{{ url_for('my_profile') }}" class="nav-btn {% if section == 'my_profile' %}active{% endif %}" title="My Profile"><span>👤</span></a>
+                <a href="{{ url_for('setting') }}" class="nav-btn {% if section == 'setting' %}active{% endif %}" title="Settings"><span>⚙️</span></a>
+                <a href="{{ url_for('about_me') }}" class="nav-btn {% if section == 'about_me' %}active{% endif %}" title="About Me"><span>ℹ️</span></a>
+                <a href="{{ url_for('logout') }}" class="nav-btn logout" title="Logout"><span>🚪</span></a>
+                <button type="button" class="nav-btn menu-btn" id="cityMenuButton" onclick="toggleCityMenu()" title="My Cities"><span>☰</span></button>
             </div>
-
         </fieldset>
-
-
-        <!-- =================================================
-             CITY SECTION
-        ================================================== -->
-
-        <section
-            class="city-section"
-            id="citySection"
-        >
-
-
+        <section class="city-section" id="citySection">
             <div class="city-header">
-
-                <a
-                    href="#"
-                    class="city-item add-city"
-                >
-                    <span class="city-icon">
-                        ＋
-                    </span>
-
-                    <span>
-                        Add City
-                    </span>
-                </a>
-
+                <a href="{{ url_for('ad_city') }}" class="city-item add-city {% if section == 'add_city' %}active{% endif %}"><span class="city-icon">＋</span><span>Add City</span></a>
             </div>
-
-
             <div class="city_area">
-
-                <a
-                    href="#"
-                    class="city-item"
-                >
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-                    <span>
-                        Delhi
-                    </span>
-                </a>
-
+                <a href="{{ url_for('city') }}" class="city-item {% if section == 'city' %}active{% endif %}"><span class="city-icon">📍</span><span>Delhi</span></a>
             </div>
-
-
         </section>
-
-
     </aside>
-
-
-
-    <!-- =====================================================
-         MAIN CONTENT
-    ====================================================== -->
-
     <main class="content">
-
         {% if section == "dashboard" %}
-
             {% include "sections/my_dashboard.html" %}
-
         {% elif section == "my_profile" %}
-
             {% include "sections/my_profile.html" %}
-
         {% elif section == "setting" %}
-
             {% include "sections/setting.html" %}
-
         {% elif section == "about_me" %}
-
             {% include "sections/about_me.html" %}
-
+        {% elif section == "city" %}
+            {% include "sections/city.html" %}
+        {% elif section == "add_city" %}
+            {% include "sections/add_city.html" %}
         {% else %}
-
             Not selected any sections ! Please select.
-
         {% endif %}
     </main>
-
-
 </div>
-
-
-
 <script>
-
 function toggleCityMenu() {
-
-    const citySection =
-        document.getElementById("citySection");
-
-    const menuButton =
-        document.getElementById("cityMenuButton");
-
-
+    const citySection = document.getElementById("citySection");
+    const menuButton = document.getElementById("cityMenuButton");
     citySection.classList.toggle("mobile-show");
-
     menuButton.classList.toggle("menu-active");
-
 }
-
 </script>
-
-
 </body>
 </html>
