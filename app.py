@@ -388,6 +388,118 @@ def signup():
         if conn:
             conn.close()
 
+# Update Profile section
+
+@app.route("/update_profile", methods=["POST"])
+def update_profile():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    user_id = session["user_id"]
+    section = request.form.get("section")
+
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        if section == "personal":
+            full_name = request.form.get("full_name", "").strip()
+            gender = request.form.get("gender", "").strip() or None
+            date_of_birth = request.form.get("date_of_birth", "").strip() or None
+
+            if not full_name:
+                return redirect(url_for("my_profile"))
+
+            cursor.execute(
+                """
+                UPDATE user_detail
+                SET full_name = %s,
+                    gender = %s,
+                    date_of_birth = %s
+                WHERE user_id = %s
+                """,
+                (full_name, gender, date_of_birth, user_id)
+            )
+
+            session["full_name"] = full_name
+
+        elif section == "contact":
+            email_id = request.form.get("email_id", "").strip()
+            mobile_number = request.form.get("mobile_number", "").strip()
+
+            if not email_id or not mobile_number:
+                return redirect(url_for("my_profile"))
+
+            cursor.execute(
+                """
+                SELECT user_id
+                FROM user_detail
+                WHERE email_id = %s
+                AND user_id != %s
+                """,
+                (email_id, user_id)
+            )
+
+            if cursor.fetchone():
+                return redirect(url_for("my_profile"))
+
+            cursor.execute(
+                """
+                SELECT user_id
+                FROM user_detail
+                WHERE mobile_number = %s
+                AND user_id != %s
+                """,
+                (mobile_number, user_id)
+            )
+
+            if cursor.fetchone():
+                return redirect(url_for("my_profile"))
+
+            cursor.execute(
+                """
+                UPDATE user_detail
+                SET email_id = %s,
+                    mobile_number = %s
+                WHERE user_id = %s
+                """,
+                (email_id, mobile_number, user_id)
+            )
+
+            session["email_id"] = email_id
+            session["mobile_number"] = mobile_number
+
+        elif section == "preferences":
+            time_zone = request.form.get("time_zone", "").strip() or None
+
+            cursor.execute(
+                """
+                UPDATE user_detail
+                SET time_zone = %s
+                WHERE user_id = %s
+                """,
+                (time_zone, user_id)
+            )
+
+        conn.commit()
+
+    except Exception:
+        if conn:
+            conn.rollback()
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
+    return redirect(url_for("my_profile"))
+
+
+
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
