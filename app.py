@@ -557,7 +557,6 @@ def update_profile():
 
     return redirect(url_for("my_profile"))
 
-
 @app.route("/add_city_function", methods=["POST"])
 def add_city_function():
     user_data = login_required()
@@ -586,28 +585,29 @@ def add_city_function():
 
         cursor.execute(
             """
-            SELECT city_id, city_name
+            SELECT city_id
             FROM city
             WHERE user_id = %s
+            AND LOWER(city_name) = LOWER(%s)
             LIMIT 1
             """,
-            (user_id,)
+            (user_id, city_name)
         )
 
-        user_city = cursor.fetchone()
+        user_existing_city = cursor.fetchone()
 
-        if user_city:
+        if user_existing_city:
             return render_template(
                 "dashboard.html",
                 username=session.get("username"),
                 user_data=user_data,
                 section="add_city",
-                add_city_result=f"You have already added {user_city[1]}."
+                add_city_result="You have already added this city."
             )
 
         cursor.execute(
             """
-            SELECT city_id
+            SELECT city_id, city_name
             FROM city
             WHERE LOWER(city_name) = LOWER(%s)
             LIMIT 1
@@ -679,7 +679,7 @@ def add_city_function():
             username=session.get("username"),
             user_data=get_user_data(user_id),
             section="add_city",
-            add_city_result="Added"
+            add_city_result="City Added Successfully."
         )
 
     except Exception:
@@ -691,7 +691,7 @@ def add_city_function():
             username=session.get("username"),
             user_data=user_data,
             section="add_city",
-            add_city_result="Not Added"
+            add_city_result="Unable to add city."
         )
 
     finally:
@@ -700,6 +700,7 @@ def add_city_function():
 
         if conn:
             conn.close()
+
 
 
 
