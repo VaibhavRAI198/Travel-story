@@ -566,10 +566,7 @@ def add_city_function():
         return redirect(url_for("login"))
 
     user_id = session["user_id"]
-    city_name = request.form.get(
-        "city_name",
-        ""
-    ).strip()
+    city_name = request.form.get("city_name", "").strip()
 
     if not city_name:
         return render_template(
@@ -589,34 +586,69 @@ def add_city_function():
 
         cursor.execute(
             """
-            SELECT city_id
+            SELECT city_id, city_name
             FROM city
-            ORDER BY city_id DESC
+            WHERE user_id = %s
             LIMIT 1
-            """
+            """,
+            (user_id,)
         )
 
-        row = cursor.fetchone()
+        user_city = cursor.fetchone()
 
-        if row:
-            last_city_id = str(row[0])
+        if user_city:
+            return render_template(
+                "dashboard.html",
+                username=session.get("username"),
+                user_data=user_data,
+                section="add_city",
+                add_city_result=f"You have already added {user_city[1]}."
+            )
 
-            try:
-                serial_number = int(
-                    "".join(
-                        character
-                        for character in last_city_id
-                        if character.isdigit()
-                    )
-                ) + 1
+        cursor.execute(
+            """
+            SELECT city_id
+            FROM city
+            WHERE LOWER(city_name) = LOWER(%s)
+            LIMIT 1
+            """,
+            (city_name,)
+        )
 
-            except (ValueError, TypeError):
-                serial_number = 1
+        existing_city = cursor.fetchone()
+
+        if existing_city:
+            city_id = existing_city[0]
 
         else:
-            serial_number = 1
+            cursor.execute(
+                """
+                SELECT city_id
+                FROM city
+                ORDER BY city_id DESC
+                LIMIT 1
+                """
+            )
 
-        city_id = f"city{serial_number:06d}"
+            row = cursor.fetchone()
+
+            if row:
+                last_city_id = str(row[0])
+
+                try:
+                    serial_number = int(
+                        "".join(
+                            character
+                            for character in last_city_id
+                            if character.isdigit()
+                        )
+                    ) + 1
+                except (ValueError, TypeError):
+                    serial_number = 1
+            else:
+                serial_number = 1
+
+            city_id = f"city{serial_number:06d}"
 
         cursor.execute(
             """
@@ -668,6 +700,7 @@ def add_city_function():
 
         if conn:
             conn.close()
+
 
 
 if __name__ == "__main__":
