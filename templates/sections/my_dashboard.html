@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css_folder/dashboard.css') }}">
+
 <section class="dashboard-home">
     <div class="dashboard-title">
         <div>
@@ -7,8 +8,10 @@
             <p>Plan your journeys, save your memories and explore new places.</p>
         </div>
         <div class="date-card">
-            <span>Today</span>
+            <span>LOCAL DATE & TIME</span>
             <strong id="currentDate"></strong>
+            <b id="currentTime"></b>
+            <small id="currentTimezone"></small>
         </div>
     </div>
 
@@ -20,6 +23,7 @@
                 <strong>0</strong>
             </div>
         </div>
+
         <div class="stat-card">
             <div class="stat-icon">📍</div>
             <div>
@@ -27,6 +31,7 @@
                 <strong>0</strong>
             </div>
         </div>
+
         <div class="stat-card">
             <div class="stat-icon">📸</div>
             <div>
@@ -34,6 +39,7 @@
                 <strong>0</strong>
             </div>
         </div>
+
         <div class="stat-card">
             <div class="stat-icon">❤️</div>
             <div>
@@ -42,65 +48,36 @@
             </div>
         </div>
     </div>
-
-    <div class="dashboard-grid">
-        <div class="dashboard-card welcome-card">
-            <div class="card-heading">
-                <div>
-                    <span class="small-title">START YOUR JOURNEY</span>
-                    <h3>Where will you go next?</h3>
-                </div>
-                <span class="card-icon">✈️</span>
-            </div>
-            <p>Add your first city and start building your personal travel story.</p>
-            <a href="{{ url_for('add_city') }}" class="dashboard-button">+ Add New City</a>
-        </div>
-
-        <div class="dashboard-card profile-card">
-            <div class="card-heading">
-                <div>
-                    <span class="small-title">MY PROFILE</span>
-                    <h3>{{ user_data["full_name"] }}</h3>
-                </div>
-                <span class="card-icon">👤</span>
-            </div>
-            <div class="profile-info">
-                <div>
-                    <span>Email</span>
-                    <strong>{{ user_data["email_id"] }}</strong>
-                </div>
-                <div>
-                    <span>Mobile</span>
-                    <strong>{{ user_data["mobile_number"] }}</strong>
-                </div>
-            </div>
-            <a href="{{ url_for('my_profile') }}" class="dashboard-link">View Profile →</a>
-        </div>
-    </div>
-
-    <div class="dashboard-card recent-card">
-        <div class="card-heading">
-            <div>
-                <span class="small-title">TRAVEL ACTIVITY</span>
-                <h3>Recent Adventures</h3>
-            </div>
-            <span class="card-icon">🧳</span>
-        </div>
-        <div class="empty-state">
-            <div>🗺️</div>
-            <h4>No travel stories yet</h4>
-            <p>Your saved cities and travel memories will appear here.</p>
-            <a href="{{ url_for('add_city') }}" class="dashboard-button">Start Exploring</a>
-        </div>
-    </div>
 </section>
 
 <script>
-const dateElement = document.getElementById("currentDate");
-const today = new Date();
-dateElement.textContent = today.toLocaleDateString("en-IN", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric"
-});
+function updateDateTime() {
+    const now = new Date();
+
+    document.getElementById("currentDate").textContent = now.toLocaleDateString("en-IN", {
+        weekday: "long",
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    });
+
+    document.getElementById("currentTime").textContent = now.toLocaleTimeString("en-IN", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    });
+
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const offset = -now.getTimezoneOffset();
+    const sign = offset >= 0 ? "+" : "-";
+    const hours = String(Math.floor(Math.abs(offset) / 60)).padStart(2, "0");
+    const minutes = String(Math.abs(offset) % 60).padStart(2, "0");
+
+    document.getElementById("currentTimezone").textContent =
+        timezone + " • UTC" + sign + hours + ":" + minutes;
+}
+
+updateDateTime();
+setInterval(updateDateTime, 1000);
 </script>
