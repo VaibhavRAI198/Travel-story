@@ -7,8 +7,13 @@
             <h2>My Profile</h2>
             <p>Manage your personal information and account details.</p>
         </div>
+
+    <div class="profile-header-right">
         <div class="profile-avatar">{{ user_data["full_name"][0]|upper }}</div>
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
     </div>
+</div>
+
 <div class="profile-grid">
     <div class="profile-card">
         <div class="card-title">
@@ -69,62 +74,14 @@
             </div>
         </div>
     </div>
-
-    <div class="profile-card">
-        <div class="card-title">
-            <div class="card-title-left">
-                <span>🌐</span>
-                <div>
-                    <h3>Preferences</h3>
-                    <p>Your location and timezone settings</p>
-                </div>
-            </div>
-            <button type="button" class="section-edit" onclick="openPopup('preferencePopup')">✏️ Edit</button>
-        </div>
-
-        <div class="profile-fields">
-            <div class="profile-field">
-                <label>Time Zone</label>
-                <div>{{ user_data["time_zone"] or "Not added" }}</div>
-            </div>
-            <div class="profile-field">
-                <label>Account Status</label>
-                <div class="status-active"><span></span>Active</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="profile-card">
-        <div class="card-title">
-            <div class="card-title-left">
-                <span>🔐</span>
-                <div>
-                    <h3>Account</h3>
-                    <p>Your Travel Story account</p>
-                </div>
-            </div>
-            <button type="button" class="section-edit" onclick="openPopup('accountPopup')">✏️ Edit</button>
-        </div>
-
-        <div class="account-info">
-            <div>
-                <span>Travel Story ID</span>
-                <strong>{{ user_data["user_id"] or "Not available" }}</strong>
-            </div>
-            <div>
-                <span>Account Status</span>
-                <strong>Active</strong>
-            </div>
-        </div>
-
-        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
-    </div>
 </div>
+
 </section>
 
 <div class="profile-popup" id="personalPopup">
     <div class="popup-box">
         <button type="button" class="popup-close" onclick="closePopup('personalPopup')">×</button>
+
     <div class="popup-header">
         <span>👤</span>
         <div>
@@ -175,6 +132,7 @@
 <div class="profile-popup" id="contactPopup">
     <div class="popup-box">
         <button type="button" class="popup-close" onclick="closePopup('contactPopup')">×</button>
+
     <div class="popup-header">
         <span>📞</span>
         <div>
@@ -204,83 +162,13 @@
         </div>
     </form>
 </div>
-</div>
-
-<div class="profile-popup" id="preferencePopup">
-    <div class="popup-box">
-        <button type="button" class="popup-close" onclick="closePopup('preferencePopup')">×</button>
-
-    <div class="popup-header">
-        <span>🌐</span>
-        <div>
-            <h3>Edit Preferences</h3>
-            <p>Update your timezone</p>
-        </div>
-    </div>
-
-    <form method="POST" action="{{ url_for('update_profile') }}">
-        <input type="hidden" name="section" value="preferences">
-
-        <div class="popup-fields">
-            <div class="form-group">
-                <label>Time Zone</label>
-                <select name="time_zone">
-                    <option value="">Select Time Zone</option>
-                    <option value="Asia/Kolkata" {% if user_data['time_zone'] == 'Asia/Kolkata' %}selected{% endif %}>Asia/Kolkata (UTC+05:30)</option>
-                    <option value="Asia/Dubai" {% if user_data['time_zone'] == 'Asia/Dubai' %}selected{% endif %}>Asia/Dubai (UTC+04:00)</option>
-                    <option value="Asia/Singapore" {% if user_data['time_zone'] == 'Asia/Singapore' %}selected{% endif %}>Asia/Singapore (UTC+08:00)</option>
-                    <option value="Europe/London" {% if user_data['time_zone'] == 'Europe/London' %}selected{% endif %}>Europe/London</option>
-                    <option value="Europe/Paris" {% if user_data['time_zone'] == 'Europe/Paris' %}selected{% endif %}>Europe/Paris</option>
-                    <option value="America/New_York" {% if user_data['time_zone'] == 'America/New_York' %}selected{% endif %}>America/New_York</option>
-                    <option value="America/Los_Angeles" {% if user_data['time_zone'] == 'America/Los_Angeles' %}selected{% endif %}>America/Los_Angeles</option>
-                    <option value="Australia/Sydney" {% if user_data['time_zone'] == 'Australia/Sydney' %}selected{% endif %}>Australia/Sydney</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="popup-actions">
-            <button type="button" class="cancel-button" onclick="closePopup('preferencePopup')">Cancel</button>
-            <button type="submit" class="save-button">Save Changes</button>
-        </div>
-    </form>
-</div>
-
-</div>
-
-<div class="profile-popup" id="accountPopup">
-    <div class="popup-box">
-        <button type="button" class="popup-close" onclick="closePopup('accountPopup')">×</button>
-
-    <div class="popup-header">
-        <span>🔐</span>
-        <div>
-            <h3>Account Information</h3>
-            <p>Your account details</p>
-        </div>
-    </div>
-
-    <div class="popup-fields">
-        <div class="form-group">
-            <label>Travel Story ID</label>
-            <input type="text" value="{{ user_data['user_id'] }}" disabled>
-        </div>
-
-        <div class="form-group">
-            <label>Account Status</label>
-            <input type="text" value="Active" disabled>
-        </div>
-    </div>
-
-    <div class="popup-actions">
-        <button type="button" class="cancel-button" onclick="closePopup('accountPopup')">Close</button>
-    </div>
-</div>
 
 </div>
 
 <script>
 function openPopup(id) {
     const popup = document.getElementById(id);
+
     if (popup) {
         popup.classList.add("show");
         document.body.classList.add("popup-open");
@@ -289,6 +177,7 @@ function openPopup(id) {
 
 function closePopup(id) {
     const popup = document.getElementById(id);
+
     if (popup) {
         popup.classList.remove("show");
     }
