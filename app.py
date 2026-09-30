@@ -198,7 +198,7 @@ def about_me():
 def my_profile():
     if "username" not in session: 
         return redirect(url_for("login")) 
-    return render_template("my_profile.html")
+    return render_template("my_profile.html" , section="my_profile")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=int(os.environ.get("PORT", 5000)),debug=True)
