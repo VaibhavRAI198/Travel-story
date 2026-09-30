@@ -178,7 +178,7 @@ def signup():
 def add_city():
     if "username" not in session: 
         return redirect(url_for("login")) 
-    return render_template("add_city.html",, section="add_city")
+    return render_template("add_city.html", section="add_city")
 
 @app.route("/setting") 
 def setting():
