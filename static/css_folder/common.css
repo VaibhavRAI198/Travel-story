@@ -22,29 +22,22 @@ body {
 .left {
     width: 250px;
     height: 100vh;
-    padding: 8px;
+    padding: 15px;
     background: #ffffff;
     border-right: 1px solid #dfe5ec;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
-
-
 /* =========================================
    BORDERED SECTIONS
 ========================================= */
-
 .sidebar-box {
     position: relative;
-
     border: 1.5px solid #d8dee8;
     border-radius: 14px;
-
     padding: 18px 15px 15px;
-
     background: #ffffff;
-
     min-width: 0;
 }
 
@@ -137,18 +130,15 @@ body {
 .navigation a {
     display: flex;
     align-items: center;
-
-    gap: 11px;
-
-    padding: 10px 12px;
-
+    gap: 6px;
+    padding: 5px 8px;
     border-radius: 9px;
 
     text-decoration: none;
 
     color: #4b5563;
 
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 500;
 
     transition: all 0.2s ease;
