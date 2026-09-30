@@ -5,11 +5,15 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css_folder/common.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css_folder/common.css') }}"
+    >
 
     <title>Travel Story</title>
 
@@ -18,11 +22,12 @@
 
 <body>
 
+
 <div class="dashboard">
 
 
     <!-- =====================================================
-         LEFT / SIDEBAR
+         LEFT SIDEBAR
     ====================================================== -->
 
     <aside class="left">
@@ -36,11 +41,13 @@
 
             <div class="header">
 
+
                 <div class="logo-icon">
                     ✈️
                 </div>
 
-                <div>
+
+                <div class="header-text">
 
                     <h1>
                         Travel Story
@@ -52,6 +59,7 @@
 
                 </div>
 
+
             </div>
 
         </fieldset>
@@ -59,13 +67,13 @@
 
 
         <!-- =================================================
-             NAVIGATION BUTTON AREA
+             MY SETTING / NAVIGATION
         ================================================== -->
 
         <fieldset class="sidebar-box navigation-box">
 
             <legend>
-                SETTING
+                My Setting
             </legend>
 
 
@@ -74,11 +82,15 @@
 
                 <!-- Dashboard -->
 
-                <a href="{{ url_for('dashboard') }}"
-                   class="nav-btn active"
-                   title="Dashboard">
+                <a
+                    href="{{ url_for('dashboard') }}"
+                    class="nav-btn active"
+                    title="Dashboard"
+                >
 
-                    <span>🏠</span>
+                    <span>
+                        🏠
+                    </span>
 
                 </a>
 
@@ -86,11 +98,15 @@
 
                 <!-- Profile -->
 
-                <a href="{{ url_for('my_profile') }}"
-                   class="nav-btn"
-                   title="My Profile">
+                <a
+                    href="{{ url_for('my_profile') }}"
+                    class="nav-btn"
+                    title="My Profile"
+                >
 
-                    <span>👤</span>
+                    <span>
+                        👤
+                    </span>
 
                 </a>
 
@@ -98,11 +114,15 @@
 
                 <!-- Settings -->
 
-                <a href="{{ url_for('setting') }}"
-                   class="nav-btn"
-                   title="Settings">
+                <a
+                    href="{{ url_for('setting') }}"
+                    class="nav-btn"
+                    title="Settings"
+                >
 
-                    <span>⚙️</span>
+                    <span>
+                        ⚙️
+                    </span>
 
                 </a>
 
@@ -110,11 +130,15 @@
 
                 <!-- About -->
 
-                <a href="{{ url_for('about_me') }}"
-                   class="nav-btn"
-                   title="About Me">
+                <a
+                    href="{{ url_for('about_me') }}"
+                    class="nav-btn"
+                    title="About Me"
+                >
 
-                    <span>ℹ️</span>
+                    <span>
+                        ℹ️
+                    </span>
 
                 </a>
 
@@ -122,51 +146,78 @@
 
                 <!-- Logout -->
 
-                <a href="{{ url_for('logout') }}"
-                   class="nav-btn logout"
-                   title="Logout">
+                <a
+                    href="{{ url_for('logout') }}"
+                    class="nav-btn logout"
+                    title="Logout"
+                >
 
-                    <span>🚪</span>
+                    <span>
+                        🚪
+                    </span>
 
                 </a>
 
 
 
-                <!-- MOBILE MENU -->
+                <!-- =================================================
+                     MOBILE CITY MENU
+                ================================================== -->
 
-                <button type="button"
-                        class="nav-btn menu-btn"
-                        onclick="toggleCityMenu()"
-                        title="Cities">
+                <button
+                    type="button"
+                    class="nav-btn menu-btn"
+                    id="cityMenuButton"
+                    onclick="toggleCityMenu()"
+                    title="My Cities"
+                >
 
-                    <span>☰</span>
+                    <span>
+                        ☰
+                    </span>
 
                 </button>
 
 
             </div>
 
-
         </fieldset>
 
 
 
         <!-- =================================================
-             CITY AREA
+             CITY SECTION
+             
+             Desktop:
+             Always visible.
+
+             Mobile:
+             Hidden until ☰ is clicked.
         ================================================== -->
 
-        <div class="city-section">
+        <section
+            class="city-section"
+            id="citySection"
+        >
 
 
             <!-- CITY HEADER -->
 
             <div class="city-header">
-                <a href="#"
-                   class="add-city-small">
 
+
+                <span class="city-title">
+                    My City
+                </span>
+
+
+                <a
+                    href="#"
+                    class="add-city-small"
+                >
                     ＋ Add City
-
                 </a>
+
 
             </div>
 
@@ -174,15 +225,34 @@
 
             <!-- CITY LIST -->
 
-            <div class="city_area"
-                 id="cityArea">
+            <div class="city_area">
+
+
+                <!-- ADD CITY -->
+
+                <a
+                    href="#"
+                    class="city-item add-city"
+                >
+
+                    <span class="city-icon">
+                        ＋
+                    </span>
+
+                    <span>
+                        Add City
+                    </span>
+
+                </a>
 
 
 
-                <!-- CITY 1 -->
+                <!-- CITY -->
 
-                <a href="#"
-                   class="city-item">
+                <a
+                    href="#"
+                    class="city-item"
+                >
 
                     <span class="city-icon">
                         📍
@@ -196,10 +266,10 @@
 
 
 
-                <!-- CITY 2 -->
-
-                <a href="#"
-                   class="city-item">
+                <a
+                    href="#"
+                    class="city-item"
+                >
 
                     <span class="city-icon">
                         📍
@@ -213,10 +283,10 @@
 
 
 
-                <!-- CITY 3 -->
-
-                <a href="#"
-                   class="city-item">
+                <a
+                    href="#"
+                    class="city-item"
+                >
 
                     <span class="city-icon">
                         📍
@@ -230,10 +300,10 @@
 
 
 
-                <!-- CITY 4 -->
-
-                <a href="#"
-                   class="city-item">
+                <a
+                    href="#"
+                    class="city-item"
+                >
 
                     <span class="city-icon">
                         📍
@@ -247,10 +317,10 @@
 
 
 
-                <!-- CITY 5 -->
-
-                <a href="#"
-                   class="city-item">
+                <a
+                    href="#"
+                    class="city-item"
+                >
 
                     <span class="city-icon">
                         📍
@@ -264,10 +334,10 @@
 
 
 
-                <!-- CITY 6 -->
-
-                <a href="#"
-                   class="city-item">
+                <a
+                    href="#"
+                    class="city-item"
+                >
 
                     <span class="city-icon">
                         📍
@@ -280,9 +350,61 @@
                 </a>
 
 
+
+                <a
+                    href="#"
+                    class="city-item"
+                >
+
+                    <span class="city-icon">
+                        📍
+                    </span>
+
+                    <span>
+                        Shimla
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    href="#"
+                    class="city-item"
+                >
+
+                    <span class="city-icon">
+                        📍
+                    </span>
+
+                    <span>
+                        Chandigarh
+                    </span>
+
+                </a>
+
+
+
+                <a
+                    href="#"
+                    class="city-item"
+                >
+
+                    <span class="city-icon">
+                        📍
+                    </span>
+
+                    <span>
+                        Kolkata
+                    </span>
+
+                </a>
+
+
             </div>
 
-        </div>
+
+        </section>
 
 
     </aside>
@@ -295,6 +417,8 @@
 
     <main class="content">
 
+
+        <!-- PAGE HEADER -->
 
         <div class="content-header">
 
@@ -310,6 +434,8 @@
 
 
 
+        <!-- DASHBOARD CARD -->
+
         <div class="dashboard-card">
 
             <h3>
@@ -317,7 +443,7 @@
             </h3>
 
             <p>
-                Select a city from the city list to explore
+                Select a city from the left side to explore
                 your travel stories.
             </p>
 
@@ -339,10 +465,17 @@
 
 function toggleCityMenu() {
 
-    const cityArea =
-        document.getElementById("cityArea");
+    const citySection =
+        document.getElementById("citySection");
 
-    cityArea.classList.toggle("mobile-city-open");
+    const menuButton =
+        document.getElementById("cityMenuButton");
+
+
+    citySection.classList.toggle("mobile-show");
+
+
+    menuButton.classList.toggle("menu-active");
 
 }
 
