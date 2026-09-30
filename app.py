@@ -179,7 +179,26 @@ def add_city():
     if "username" not in session: 
         return redirect(url_for("login")) 
     return render_template("add_city.html")
-    
+
+@app.route("/setting") 
+def setting():
+    if "username" not in session: 
+        return redirect(url_for("login")) 
+    return render_template("setting.html")
+
+
+@app.route("/about_me") 
+def about_me():
+    if "username" not in session: 
+        return redirect(url_for("login")) 
+    return render_template("about_me.html")
+
+
+@app.route("/my_profile") 
+def my_profile():
+    if "username" not in session: 
+        return redirect(url_for("login")) 
+    return render_template("my_profile.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0",port=int(os.environ.get("PORT", 5000)),debug=True)
