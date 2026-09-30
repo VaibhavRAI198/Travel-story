@@ -5,11 +5,15 @@ import psycopg2
 app = Flask(__name__)
 app.secret_key = "travel_story"
 
+
 def get_db_connection():
     database_url = os.environ.get("DATABASE_URL")
+
     if not database_url:
         raise Exception("DATABASE_URL is not configured.")
+
     return psycopg2.connect(database_url)
+
 
 def get_user_data(user_id):
     conn = None
@@ -18,8 +22,13 @@ def get_user_data(user_id):
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
+
         cursor.execute(
-            "SELECT * FROM user_detail WHERE user_id = %s",
+            """
+            SELECT *
+            FROM user_detail
+            WHERE user_id = %s
+            """,
             (user_id,)
         )
 
@@ -35,8 +44,23 @@ def get_user_data(user_id):
     finally:
         if cursor:
             cursor.close()
+
         if conn:
             conn.close()
+
+
+def login_required():
+    if "user_id" not in session:
+        return None
+
+    user_data = get_user_data(session["user_id"])
+
+    if not user_data:
+        session.clear()
+        return None
+
+    return user_data
+
 
 @app.route("/")
 def home():
@@ -44,6 +68,7 @@ def home():
         return redirect(url_for("dashboard"))
 
     return redirect(url_for("login"))
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -78,7 +103,11 @@ def login():
                    OR mobile_number = %s
                 LIMIT 1
                 """,
-                (login_value, login_value, login_value)
+                (
+                    login_value,
+                    login_value,
+                    login_value
+                )
             )
 
             user = cursor.fetchone()
@@ -124,15 +153,12 @@ def login():
 
     return render_template("login.html")
 
+
 @app.route("/dashboard")
 def dashboard():
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    user_data = get_user_data(session["user_id"])
+    user_data = login_required()
 
     if not user_data:
-        session.clear()
         return redirect(url_for("login"))
 
     return render_template(
@@ -142,15 +168,12 @@ def dashboard():
         section="dashboard"
     )
 
+
 @app.route("/my_profile")
 def my_profile():
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    user_data = get_user_data(session["user_id"])
+    user_data = login_required()
 
     if not user_data:
-        session.clear()
         return redirect(url_for("login"))
 
     return render_template(
@@ -160,15 +183,12 @@ def my_profile():
         section="my_profile"
     )
 
+
 @app.route("/setting")
 def setting():
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    user_data = get_user_data(session["user_id"])
+    user_data = login_required()
 
     if not user_data:
-        session.clear()
         return redirect(url_for("login"))
 
     return render_template(
@@ -178,15 +198,12 @@ def setting():
         section="setting"
     )
 
+
 @app.route("/about_me")
 def about_me():
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    user_data = get_user_data(session["user_id"])
+    user_data = login_required()
 
     if not user_data:
-        session.clear()
         return redirect(url_for("login"))
 
     return render_template(
@@ -196,15 +213,12 @@ def about_me():
         section="about_me"
     )
 
+
 @app.route("/city")
 def city():
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    user_data = get_user_data(session["user_id"])
+    user_data = login_required()
 
     if not user_data:
-        session.clear()
         return redirect(url_for("login"))
 
     return render_template(
@@ -214,15 +228,12 @@ def city():
         section="city"
     )
 
+
 @app.route("/add_city")
 def add_city():
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    user_data = get_user_data(session["user_id"])
+    user_data = login_required()
 
     if not user_data:
-        session.clear()
         return redirect(url_for("login"))
 
     return render_template(
@@ -232,14 +243,17 @@ def add_city():
         section="add_city"
     )
 
+
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("login"))
 
+
 @app.route("/signup_page")
 def signup_page():
     return render_template("signup.html")
+
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -338,6 +352,10 @@ def signup():
         serial_number = result[0]
 
         name_part = "".join(full_name.split()).lower()[:6]
+
+        if not name_part:
+            name_part = "user"
+
         user_id = f"{name_part}{serial_number:06d}"
 
         cursor.execute(
@@ -388,7 +406,6 @@ def signup():
         if conn:
             conn.close()
 
-# Update Profile section
 
 @app.route("/update_profile", methods=["POST"])
 def update_profile():
@@ -406,9 +423,20 @@ def update_profile():
         cursor = conn.cursor()
 
         if section == "personal":
-            full_name = request.form.get("full_name", "").strip()
-            gender = request.form.get("gender", "").strip() or None
-            date_of_birth = request.form.get("date_of_birth", "").strip() or None
+            full_name = request.form.get(
+                "full_name",
+                ""
+            ).strip()
+
+            gender = request.form.get(
+                "gender",
+                ""
+            ).strip() or None
+
+            date_of_birth = request.form.get(
+                "date_of_birth",
+                ""
+            ).strip() or None
 
             if not full_name:
                 return redirect(url_for("my_profile"))
@@ -416,19 +444,32 @@ def update_profile():
             cursor.execute(
                 """
                 UPDATE user_detail
-                SET full_name = %s,
+                SET
+                    full_name = %s,
                     gender = %s,
                     date_of_birth = %s
                 WHERE user_id = %s
                 """,
-                (full_name, gender, date_of_birth, user_id)
+                (
+                    full_name,
+                    gender,
+                    date_of_birth,
+                    user_id
+                )
             )
 
             session["full_name"] = full_name
 
         elif section == "contact":
-            email_id = request.form.get("email_id", "").strip()
-            mobile_number = request.form.get("mobile_number", "").strip()
+            email_id = request.form.get(
+                "email_id",
+                ""
+            ).strip()
+
+            mobile_number = request.form.get(
+                "mobile_number",
+                ""
+            ).strip()
 
             if not email_id or not mobile_number:
                 return redirect(url_for("my_profile"))
@@ -440,7 +481,10 @@ def update_profile():
                 WHERE email_id = %s
                 AND user_id != %s
                 """,
-                (email_id, user_id)
+                (
+                    email_id,
+                    user_id
+                )
             )
 
             if cursor.fetchone():
@@ -453,7 +497,10 @@ def update_profile():
                 WHERE mobile_number = %s
                 AND user_id != %s
                 """,
-                (mobile_number, user_id)
+                (
+                    mobile_number,
+                    user_id
+                )
             )
 
             if cursor.fetchone():
@@ -462,18 +509,26 @@ def update_profile():
             cursor.execute(
                 """
                 UPDATE user_detail
-                SET email_id = %s,
+                SET
+                    email_id = %s,
                     mobile_number = %s
                 WHERE user_id = %s
                 """,
-                (email_id, mobile_number, user_id)
+                (
+                    email_id,
+                    mobile_number,
+                    user_id
+                )
             )
 
             session["email_id"] = email_id
             session["mobile_number"] = mobile_number
 
         elif section == "preferences":
-            time_zone = request.form.get("time_zone", "").strip() or None
+            time_zone = request.form.get(
+                "time_zone",
+                ""
+            ).strip() or None
 
             cursor.execute(
                 """
@@ -481,7 +536,10 @@ def update_profile():
                 SET time_zone = %s
                 WHERE user_id = %s
                 """,
-                (time_zone, user_id)
+                (
+                    time_zone,
+                    user_id
+                )
             )
 
         conn.commit()
@@ -493,29 +551,42 @@ def update_profile():
     finally:
         if cursor:
             cursor.close()
+
         if conn:
             conn.close()
 
     return redirect(url_for("my_profile"))
 
 
-@app.route("/add_city_function", methods=["GET", "POST"])
+@app.route("/add_city_function", methods=["POST"])
 def add_city_function():
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-    user_data = get_user_data(session["user_id"])
+    user_data = login_required()
+
     if not user_data:
-        session.clear()
-    return redirect(url_for("login"))
-    result = "Not Added"
-    user_id = request.form.get("user_id", "").strip()
-    city_name = request.form.get("city_name", "").strip()
-    if user_id and city_name:
-        conn = None
-        cursor = None
+        return redirect(url_for("login"))
+
+    user_id = session["user_id"]
+    city_name = request.form.get(
+        "city_name",
+        ""
+    ).strip()
+
+    if not city_name:
+        return render_template(
+            "dashboard.html",
+            username=session.get("username"),
+            user_data=user_data,
+            section="add_city",
+            add_city_result="Please enter city name."
+        )
+
+    conn = None
+    cursor = None
+
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
+
         cursor.execute(
             """
             SELECT city_id
@@ -524,21 +595,29 @@ def add_city_function():
             LIMIT 1
             """
         )
+
         row = cursor.fetchone()
+
         if row:
             last_city_id = str(row[0])
+
             try:
                 serial_number = int(
                     "".join(
-                        c for c in last_city_id
-                        if c.isdigit()
+                        character
+                        for character in last_city_id
+                        if character.isdigit()
                     )
                 ) + 1
-            except:
+
+            except (ValueError, TypeError):
                 serial_number = 1
+
         else:
             serial_number = 1
+
         city_id = f"city{serial_number:06d}"
+
         cursor.execute(
             """
             INSERT INTO city
@@ -560,20 +639,35 @@ def add_city_function():
                 city_name
             )
         )
+
         conn.commit()
-        result = "Added"
-    except Exception as e:
+
+        return render_template(
+            "dashboard.html",
+            username=session.get("username"),
+            user_data=get_user_data(user_id),
+            section="add_city",
+            add_city_result="Added"
+        )
+
+    except Exception:
         if conn:
             conn.rollback()
-        result = "Not Added"
+
+        return render_template(
+            "dashboard.html",
+            username=session.get("username"),
+            user_data=user_data,
+            section="add_city",
+            add_city_result="Not Added"
+        )
+
     finally:
         if cursor:
             cursor.close()
+
         if conn:
             conn.close()
-    return render_template("dashboard.html",username=session.get("username"),user_data=user_data,section="add_city",add_city_result=result)
-
-
 
 
 if __name__ == "__main__":
