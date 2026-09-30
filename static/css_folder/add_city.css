@@ -1,0 +1,291 @@
+.add-city-page {
+width: 100%;
+}
+
+.add-city-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+margin-bottom: 22px;
+}
+
+.add-city-label {
+display: block;
+margin-bottom: 7px;
+color: #64748b;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 1.5px;
+}
+
+.add-city-header h2 {
+margin-bottom: 6px;
+color: #f8fafc;
+font-size: 27px;
+}
+
+.add-city-header p {
+color: #94a3b8;
+font-size: 14px;
+}
+
+.add-city-icon {
+width: 58px;
+height: 58px;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 1px solid #33404d;
+border-radius: 50%;
+background: #1d2530;
+font-size: 23px;
+flex-shrink: 0;
+}
+
+.add-city-card {
+width: 100%;
+padding: 22px;
+border: 1px solid #26303b;
+border-radius: 15px;
+background: #14181d;
+}
+
+.card-heading {
+display: flex;
+align-items: center;
+gap: 12px;
+padding-bottom: 17px;
+margin-bottom: 20px;
+border-bottom: 1px solid #222b35;
+}
+
+.heading-icon {
+width: 40px;
+height: 40px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+background: #1d2530;
+font-size: 18px;
+flex-shrink: 0;
+}
+
+.card-heading h3 {
+margin-bottom: 3px;
+color: #f8fafc;
+font-size: 16px;
+}
+
+.card-heading p {
+color: #64748b;
+font-size: 11px;
+}
+
+.city-form {
+width: 100%;
+}
+
+.form-grid {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 16px;
+}
+
+.form-group {
+display: flex;
+flex-direction: column;
+gap: 7px;
+}
+
+.form-group.full-width {
+grid-column: 1 / -1;
+}
+
+.form-group label {
+color: #94a3b8;
+font-size: 11px;
+font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+width: 100%;
+border: 1px solid #2b3541;
+border-radius: 9px;
+outline: none;
+background: #0f1317;
+color: #e2e8f0;
+font-family: inherit;
+font-size: 12px;
+transition: .2s;
+}
+
+.form-group input {
+height: 42px;
+padding: 0 12px;
+}
+
+.form-group textarea {
+min-height: 120px;
+padding: 12px;
+resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+color: #475569;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+border-color: #64748b;
+background: #11161b;
+}
+
+.form-group input[type="date"] {
+color-scheme: dark;
+}
+
+.form-actions {
+display: flex;
+align-items: center;
+justify-content: flex-end;
+gap: 10px;
+margin-top: 22px;
+padding-top: 17px;
+border-top: 1px solid #222b35;
+}
+
+.clear-button,
+.save-city-button {
+min-height: 39px;
+padding: 9px 16px;
+border-radius: 8px;
+font-family: inherit;
+font-size: 11px;
+font-weight: 600;
+cursor: pointer;
+transition: .2s;
+}
+
+.clear-button {
+border: 1px solid #303a46;
+background: transparent;
+color: #94a3b8;
+}
+
+.clear-button:hover {
+background: #1d2530;
+color: #fff;
+}
+
+.save-city-button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 6px;
+border: 1px solid #e2e8f0;
+background: #e2e8f0;
+color: #0d0f12;
+}
+
+.save-city-button:hover {
+background: #fff;
+}
+
+.save-city-button span {
+font-size: 15px;
+line-height: 1;
+}
+
+@media (max-width: 700px) {
+.add-city-header {
+align-items: flex-start;
+}
+
+```
+.add-city-header h2 {
+    font-size: 23px;
+}
+
+.add-city-header p {
+    font-size: 12px;
+}
+
+.add-city-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 19px;
+}
+
+.add-city-card {
+    padding: 17px;
+}
+
+.form-grid {
+    grid-template-columns: 1fr;
+}
+
+.form-group.full-width {
+    grid-column: auto;
+}
+```
+
+}
+
+@media (max-width: 450px) {
+.add-city-header {
+gap: 10px;
+}
+
+```
+.add-city-header h2 {
+    font-size: 21px;
+}
+
+.add-city-header p {
+    font-size: 11px;
+}
+
+.add-city-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
+}
+
+.add-city-card {
+    padding: 14px;
+    border-radius: 12px;
+}
+
+.card-heading {
+    gap: 9px;
+}
+
+.heading-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+}
+
+.card-heading h3 {
+    font-size: 14px;
+}
+
+.card-heading p {
+    font-size: 10px;
+}
+
+.form-actions {
+    flex-direction: column-reverse;
+}
+
+.clear-button,
+.save-city-button {
+    width: 100%;
+}
+```
+
+}
