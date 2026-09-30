@@ -49,6 +49,42 @@ def get_user_data(user_id):
             conn.close()
 
 
+def get_user_cities(user_id):
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            SELECT city_id, city_name
+            FROM city
+            WHERE user_id = %s
+            ORDER BY city_id
+            """,
+            (user_id,)
+        )
+
+        rows = cursor.fetchall()
+
+        return [
+            {
+                "city_id": row[0],
+                "city_name": row[1]
+            }
+            for row in rows
+        ]
+
+    finally:
+        if cursor:
+            cursor.close()
+
+        if conn:
+            conn.close()
+
+
 def login_required():
     if "user_id" not in session:
         return None
@@ -60,6 +96,25 @@ def login_required():
         return None
 
     return user_data
+
+
+def render_dashboard(section, user_data=None, **kwargs):
+    if user_data is None:
+        user_data = login_required()
+
+    if not user_data:
+        return redirect(url_for("login"))
+
+    cities = get_user_cities(session["user_id"])
+
+    return render_template(
+        "dashboard.html",
+        username=session.get("username"),
+        user_data=user_data,
+        cities=cities,
+        section=section,
+        **kwargs
+    )
 
 
 @app.route("/")
@@ -156,62 +211,22 @@ def login():
 
 @app.route("/dashboard")
 def dashboard():
-    user_data = login_required()
-
-    if not user_data:
-        return redirect(url_for("login"))
-
-    return render_template(
-        "dashboard.html",
-        username=session.get("username"),
-        user_data=user_data,
-        section="dashboard"
-    )
+    return render_dashboard("dashboard")
 
 
 @app.route("/my_profile")
 def my_profile():
-    user_data = login_required()
-
-    if not user_data:
-        return redirect(url_for("login"))
-
-    return render_template(
-        "dashboard.html",
-        username=session.get("username"),
-        user_data=user_data,
-        section="my_profile"
-    )
+    return render_dashboard("my_profile")
 
 
 @app.route("/setting")
 def setting():
-    user_data = login_required()
-
-    if not user_data:
-        return redirect(url_for("login"))
-
-    return render_template(
-        "dashboard.html",
-        username=session.get("username"),
-        user_data=user_data,
-        section="setting"
-    )
+    return render_dashboard("setting")
 
 
 @app.route("/about_me")
 def about_me():
-    user_data = login_required()
-
-    if not user_data:
-        return redirect(url_for("login"))
-
-    return render_template(
-        "dashboard.html",
-        username=session.get("username"),
-        user_data=user_data,
-        section="about_me"
-    )
+    return render_dashboard("about_me")
 
 
 @app.route("/city")
@@ -221,32 +236,38 @@ def city():
     if not user_data:
         return redirect(url_for("login"))
 
+    cities = get_user_cities(session["user_id"])
+
+    selected_city_id = request.args.get("city_id", "").strip()
+
+    selected_city = None
+
+    if selected_city_id:
+        for city_data in cities:
+            if city_data["city_id"] == selected_city_id:
+                selected_city = city_data
+                break
+
     return render_template(
         "dashboard.html",
         username=session.get("username"),
         user_data=user_data,
+        cities=cities,
+        selected_city_id=selected_city_id,
+        selected_city=selected_city,
         section="city"
     )
 
 
 @app.route("/add_city")
 def add_city():
-    user_data = login_required()
-
-    if not user_data:
-        return redirect(url_for("login"))
-
-    return render_template(
-        "dashboard.html",
-        username=session.get("username"),
-        user_data=user_data,
-        section="add_city"
-    )
+    return render_dashboard("add_city")
 
 
 @app.route("/logout")
 def logout():
     session.clear()
+
     return redirect(url_for("login"))
 
 
@@ -557,6 +578,7 @@ def update_profile():
 
     return redirect(url_for("my_profile"))
 
+
 @app.route("/add_city_function", methods=["POST"])
 def add_city_function():
     user_data = login_required()
@@ -565,14 +587,16 @@ def add_city_function():
         return redirect(url_for("login"))
 
     user_id = session["user_id"]
-    city_name = request.form.get("city_name", "").strip()
+
+    city_name = request.form.get(
+        "city_name",
+        ""
+    ).strip()
 
     if not city_name:
-        return render_template(
-            "dashboard.html",
-            username=session.get("username"),
+        return render_dashboard(
+            "add_city",
             user_data=user_data,
-            section="add_city",
             add_city_result="Please enter city name."
         )
 
@@ -588,20 +612,21 @@ def add_city_function():
             SELECT city_id
             FROM city
             WHERE user_id = %s
-            AND LOWER(city_name) = LOWER(%s)
+            AND LOWER(TRIM(city_name)) = LOWER(TRIM(%s))
             LIMIT 1
             """,
-            (user_id, city_name)
+            (
+                user_id,
+                city_name
+            )
         )
 
-        user_existing_city = cursor.fetchone()
+        existing_user_city = cursor.fetchone()
 
-        if user_existing_city:
-            return render_template(
-                "dashboard.html",
-                username=session.get("username"),
+        if existing_user_city:
+            return render_dashboard(
+                "add_city",
                 user_data=user_data,
-                section="add_city",
                 add_city_result="You have already added this city."
             )
 
@@ -609,7 +634,7 @@ def add_city_function():
             """
             SELECT city_id, city_name
             FROM city
-            WHERE LOWER(city_name) = LOWER(%s)
+            WHERE LOWER(TRIM(city_name)) = LOWER(TRIM(%s))
             LIMIT 1
             """,
             (city_name,)
@@ -625,7 +650,12 @@ def add_city_function():
                 """
                 SELECT city_id
                 FROM city
-                ORDER BY city_id DESC
+                WHERE city_id ~ '^city[0-9]+$'
+                ORDER BY
+                    CAST(
+                        SUBSTRING(city_id FROM '[0-9]+$')
+                        AS INTEGER
+                    ) DESC
                 LIMIT 1
                 """
             )
@@ -633,18 +663,18 @@ def add_city_function():
             row = cursor.fetchone()
 
             if row:
-                last_city_id = str(row[0])
-
                 try:
                     serial_number = int(
                         "".join(
                             character
-                            for character in last_city_id
+                            for character in str(row[0])
                             if character.isdigit()
                         )
                     ) + 1
+
                 except (ValueError, TypeError):
                     serial_number = 1
+
             else:
                 serial_number = 1
 
@@ -674,23 +704,31 @@ def add_city_function():
 
         conn.commit()
 
-        return render_template(
-            "dashboard.html",
-            username=session.get("username"),
-            user_data=get_user_data(user_id),
-            section="add_city",
+        updated_user_data = get_user_data(user_id)
+
+        return render_dashboard(
+            "add_city",
+            user_data=updated_user_data,
             add_city_result="City Added Successfully."
         )
 
-    except Exception:
+    except psycopg2.errors.UniqueViolation:
         if conn:
             conn.rollback()
 
-        return render_template(
-            "dashboard.html",
-            username=session.get("username"),
+        return render_dashboard(
+            "add_city",
             user_data=user_data,
-            section="add_city",
+            add_city_result="You have already added this city."
+        )
+
+    except Exception as e:
+        if conn:
+            conn.rollback()
+
+        return render_dashboard(
+            "add_city",
+            user_data=user_data,
             add_city_result="Unable to add city."
         )
 
@@ -700,8 +738,6 @@ def add_city_function():
 
         if conn:
             conn.close()
-
-
 
 
 if __name__ == "__main__":
