@@ -3,122 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css_folder/common.css') }}"
-    >
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='css_folder/common.css') }}">
     <title>Travel Story</title>
-
 </head>
-
-
 <body>
-
-
 <div class="dashboard">
-
-
     <!-- ================= LEFT SIDEBAR ================= -->
-
     <aside class="left">
-
-
         <!-- HEADER AREA -->
-
         <fieldset class="sidebar-box header-box">
-
-            <legend>Travel Story</legend>
-
             <div class="header">
-
-                <div class="logo-icon">
-                    ✈️
-                </div>
-
+                <div class="logo-icon">✈️</div>
                 <div>
                     <h1>Travel Story</h1>
-                    <p>My Travel Dashboard</p>
+                    <p>Welcome , {{user_data["full_name"]}}</p>
                 </div>
-
             </div>
-
         </fieldset>
-
-
-
         <!-- MY SETTINGS / NAVIGATION -->
-
         <fieldset class="sidebar-box navigation-box">
-
             <legend>My Setting</legend>
-
             <div class="navigation">
-
-                <a href="#">
-                    <span>🏠</span>
-                    Dashboard
-                </a>
-
-                <a href="#">
-                    <span>👤</span>
-                    My Profile
-                </a>
-
-                <a href="#">
-                    <span>⚙️</span>
-                    Setting
-                </a>
-
-                <a href="#">
-                    <span>ℹ️</span>
-                    About Me
-                </a>
-
-                <a href="#" class="logout">
-                    <span>🚪</span>
-                    Logout
-                </a>
-
+                <a href="{{ url_for('dashboard') }}"><span>🏠</span>Dashboard</a>
+                <a href="{{ url_for('my_profile') }}"><span>👤</span>My Profile</a>
+                <a href="{{ url_for('setting') }}"><span>⚙️</span>Setting</a>
+                <a href="{{ url_for('about_me') }}"><span>ℹ️</span>About Me</a>
+                <a href="{{ url_for('logout') }}" class="logout"><span>🚪</span>Logout</a>
             </div>
-
         </fieldset>
-
-
-
         <!-- CITY AREA -->
-
         <fieldset class="sidebar-box city-box">
-
             <legend>My City</legend>
-
             <div class="city_area">
-
-                <a href="#" class="add-city">
-                    <span>＋</span>
-                    Add City
-                </a>
-
-
-                <a href="#" class="city-item">
-
-                    <span class="city-icon">
-                        📍
-                    </span>
-
-
-                </a>
-
-
+                <a href="#" class="add-city"><span>＋</span>Add City</a>
             </div>
-
         </fieldset>
-
-
     </aside>
-
-
-
     <!-- ================= MAIN CONTENT ================= -->
 
     <main class="content">
