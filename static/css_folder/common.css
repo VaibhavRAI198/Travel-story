@@ -3,9 +3,13 @@
 ========================================================= */
 
 * {
+
     margin: 0;
+
     padding: 0;
+
     box-sizing: border-box;
+
 }
 
 
@@ -15,7 +19,10 @@
 
 body {
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     background: #0d0f12;
 
@@ -25,7 +32,7 @@ body {
 
 
 /* =========================================================
-   MAIN DASHBOARD
+   DASHBOARD
 ========================================================= */
 
 .dashboard {
@@ -42,7 +49,7 @@ body {
 
 
 /* =========================================================
-   LEFT AREA
+   LEFT SIDEBAR
 ========================================================= */
 
 .left {
@@ -67,7 +74,7 @@ body {
 
 
 /* =========================================================
-   COMMON BOX
+   COMMON SIDEBAR BOX
 ========================================================= */
 
 .sidebar-box {
@@ -103,6 +110,8 @@ body {
 
     background: #1c212c;
 
+    letter-spacing: 0.4px;
+
 }
 
 
@@ -112,9 +121,9 @@ body {
 
 .header-box {
 
-    width: 100%;
-
     flex-shrink: 0;
+
+    width: 100%;
 
 }
 
@@ -146,7 +155,10 @@ body {
 
     border-radius: 12px;
 
-    background: rgba(255, 190, 46, 0.15);
+    background:
+        rgba(255, 190, 46, 0.15);
+
+    color: #ffbe2e;
 
     font-size: 23px;
 
@@ -155,11 +167,22 @@ body {
 }
 
 
+.header-text {
+
+    min-width: 0;
+
+}
+
+
 .header h1 {
 
     font-size: 19px;
 
+    font-weight: 700;
+
     color: #ffffff;
+
+    letter-spacing: 0.5px;
 
 }
 
@@ -172,11 +195,17 @@ body {
 
     color: #94a3b8;
 
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
 }
 
 
 /* =========================================================
-   NAVIGATION AREA
+   NAVIGATION
 ========================================================= */
 
 .navigation-box {
@@ -205,6 +234,10 @@ body {
 }
 
 
+/* =========================================================
+   NAVIGATION BUTTON
+========================================================= */
+
 .nav-btn {
 
     width: 34px;
@@ -231,14 +264,18 @@ body {
 
     cursor: pointer;
 
-    transition: 0.2s ease;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 
 }
 
 
 .nav-btn:hover {
 
-    background: rgba(255, 190, 46, 0.12);
+    background:
+        rgba(255, 190, 46, 0.12);
 
     color: #ffbe2e;
 
@@ -247,7 +284,9 @@ body {
 }
 
 
-/* ACTIVE */
+/* =========================================================
+   ACTIVE DASHBOARD
+========================================================= */
 
 .nav-btn.active {
 
@@ -255,10 +294,23 @@ body {
 
     color: #0d0f12;
 
+    font-weight: 700;
+
 }
 
 
-/* LOGOUT */
+.nav-btn.active:hover {
+
+    background: #ffd066;
+
+    color: #0d0f12;
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 .nav-btn.logout {
 
@@ -269,7 +321,8 @@ body {
 
 .nav-btn.logout:hover {
 
-    background: rgba(255, 107, 107, 0.15);
+    background:
+        rgba(255, 107, 107, 0.15);
 
     color: #ff8585;
 
@@ -277,7 +330,7 @@ body {
 
 
 /* =========================================================
-   ☰ MENU
+   MOBILE MENU BUTTON
 ========================================================= */
 
 /*
@@ -287,6 +340,17 @@ body {
 .menu-btn {
 
     display: none;
+
+}
+
+
+/* Active ☰ button */
+
+.menu-btn.menu-active {
+
+    background: #ffbe2e;
+
+    color: #0d0f12;
 
 }
 
@@ -307,11 +371,11 @@ body {
 
     flex-direction: column;
 
+    background: #1c212c;
+
     border: 1.5px solid #272d37;
 
     border-radius: 14px;
-
-    background: #1c212c;
 
     padding: 14px;
 
@@ -332,16 +396,20 @@ body {
 
     justify-content: space-between;
 
+    gap: 10px;
+
     padding-bottom: 10px;
+
+    margin-bottom: 8px;
 
     border-bottom: 1px solid #272d37;
 
-    margin-bottom: 8px;
+    flex-shrink: 0;
 
 }
 
 
-.city-header span {
+.city-title {
 
     color: #ffbe2e;
 
@@ -359,6 +427,8 @@ body {
     text-decoration: none;
 
     font-size: 11px;
+
+    white-space: nowrap;
 
 }
 
@@ -384,6 +454,8 @@ body {
 
     overflow-y: auto;
 
+    overflow-x: hidden;
+
     display: flex;
 
     flex-direction: column;
@@ -395,7 +467,9 @@ body {
 }
 
 
-/* SCROLLBAR */
+/* =========================================================
+   CITY SCROLLBAR
+========================================================= */
 
 .city_area::-webkit-scrollbar {
 
@@ -420,6 +494,13 @@ body {
 }
 
 
+.city_area::-webkit-scrollbar-thumb:hover {
+
+    background: #3f4a5f;
+
+}
+
+
 /* =========================================================
    CITY ITEM
 ========================================================= */
@@ -427,6 +508,8 @@ body {
 .city-item {
 
     width: 100%;
+
+    min-height: 44px;
 
     display: flex;
 
@@ -444,7 +527,10 @@ body {
 
     font-size: 13px;
 
-    transition: 0.2s ease;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 
 }
 
@@ -506,14 +592,18 @@ body {
 
     border: 1px dashed #ffbe2e;
 
-    background: rgba(255, 190, 46, 0.05);
+    background:
+        rgba(255, 190, 46, 0.05);
 
 }
 
 
 .city-item.add-city:hover {
 
-    background: rgba(255, 190, 46, 0.15);
+    background:
+        rgba(255, 190, 46, 0.15);
+
+    transform: none;
 
 }
 
@@ -526,6 +616,8 @@ body {
 
     flex: 1;
 
+    width: calc(100% - 250px);
+
     height: 100vh;
 
     padding: 35px;
@@ -536,6 +628,10 @@ body {
 
 }
 
+
+/* =========================================================
+   CONTENT HEADER
+========================================================= */
 
 .content-header h2 {
 
@@ -573,6 +669,9 @@ body {
 
     border-radius: 15px;
 
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.4);
+
 }
 
 
@@ -597,19 +696,21 @@ body {
 
 
 /* =========================================================
-   PHONE
+   MOBILE
 ========================================================= */
 
 @media (max-width: 600px) {
 
 
-    /* ================================
-       FULL WIDTH SIDEBAR
-    ================================= */
+    /* =====================================================
+       FULL PAGE
+    ====================================================== */
 
     .dashboard {
 
         display: block;
+
+        width: 100%;
 
         height: auto;
 
@@ -619,6 +720,10 @@ body {
 
     }
 
+
+    /* =====================================================
+       SIDEBAR = 100%
+    ====================================================== */
 
     .left {
 
@@ -632,12 +737,14 @@ body {
 
         border-right: none;
 
+        gap: 10px;
+
     }
 
 
-    /* ================================
-       HEADER 100%
-    ================================= */
+    /* =====================================================
+       HEADER = 100%
+    ====================================================== */
 
     .header-box {
 
@@ -653,9 +760,9 @@ body {
     }
 
 
-    /* ================================
-       BUTTON AREA 100%
-    ================================= */
+    /* =====================================================
+       NAVIGATION = 100%
+    ====================================================== */
 
     .navigation-box {
 
@@ -673,9 +780,9 @@ body {
     }
 
 
-    /* ================================
-       SHOW ☰ ONLY PHONE
-    ================================= */
+    /* =====================================================
+       SHOW ☰ ONLY ON MOBILE
+    ====================================================== */
 
     .menu-btn {
 
@@ -684,11 +791,13 @@ body {
     }
 
 
-    /* ================================
-       CITY AREA
-    ================================= */
+    /* =====================================================
+       CITY HIDDEN BY DEFAULT
+    ====================================================== */
 
     .city-section {
+
+        display: none;
 
         width: 100%;
 
@@ -696,12 +805,53 @@ body {
 
         flex: none;
 
+        margin-top: 0;
+
     }
 
 
-    /* ================================
+    /* =====================================================
+       CITY SHOW AFTER ☰ CLICK
+    ====================================================== */
+
+    .city-section.mobile-show {
+
+        display: flex;
+
+        animation:
+            citySlideDown 0.2s ease;
+
+    }
+
+
+    /* =====================================================
+       CITY ANIMATION
+    ====================================================== */
+
+    @keyframes citySlideDown {
+
+        from {
+
+            opacity: 0;
+
+            transform: translateY(-8px);
+
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+    }
+
+
+    /* =====================================================
        MAIN CONTENT
-    ================================= */
+    ====================================================== */
 
     .content {
 
@@ -716,11 +866,17 @@ body {
     }
 
 
+    .content-header h2 {
+
+        font-size: 24px;
+
+    }
+
 }
 
 
 /* =========================================================
-   VERY SMALL PHONE
+   SMALL PHONE
 ========================================================= */
 
 @media (max-width: 380px) {
@@ -753,6 +909,17 @@ body {
     }
 
 
+    .logo-icon {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 20px;
+
+    }
+
+
     .header h1 {
 
         font-size: 17px;
@@ -763,6 +930,13 @@ body {
     .header p {
 
         font-size: 10px;
+
+    }
+
+
+    .city-section {
+
+        height: 350px;
 
     }
 
