@@ -9,276 +9,293 @@
         </div>
         <div class="profile-avatar">{{ user_data["full_name"][0]|upper }}</div>
     </div>
-
-    <div class="profile-grid">
-        <div class="profile-card">
-            <div class="card-title">
-                <div class="card-title-left">
-                    <span>👤</span>
-                    <div>
-                        <h3>Personal Information</h3>
-                        <p>Your basic personal details</p>
-                    </div>
-                </div>
-                <button class="section-edit" onclick="openPopup('personalPopup')">✏️ Edit</button>
-            </div>
-
-            <div class="profile-fields">
-                <div class="profile-field">
-                    <label>Full Name</label>
-                    <div>{{ user_data["full_name"] or "Not added" }}</div>
-                </div>
-                <div class="profile-field">
-                    <label>User ID</label>
-                    <div>{{ user_data["user_id"] or "Not available" }}</div>
-                </div>
-                <div class="profile-field">
-                    <label>Gender</label>
-                    <div>{{ user_data["gender"] or "Not added" }}</div>
-                </div>
-                <div class="profile-field">
-                    <label>Date of Birth</label>
-                    <div>{{ user_data["date_of_birth"] or "Not added" }}</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="profile-card">
-            <div class="card-title">
-                <div class="card-title-left">
-                    <span>📞</span>
-                    <div>
-                        <h3>Contact Information</h3>
-                        <p>Your registered contact details</p>
-                    </div>
-                </div>
-                <button class="section-edit" onclick="openPopup('contactPopup')">✏️ Edit</button>
-            </div>
-
-            <div class="profile-fields">
-                <div class="profile-field">
-                    <label>Email Address</label>
-                    <div>{{ user_data["email_id"] or "Not added" }}</div>
-                </div>
-                <div class="profile-field">
-                    <label>Mobile Number</label>
-                    <div>{{ user_data["mobile_number"] or "Not added" }}</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="profile-card">
-            <div class="card-title">
-                <div class="card-title-left">
-                    <span>🌐</span>
-                    <div>
-                        <h3>Preferences</h3>
-                        <p>Your location and timezone settings</p>
-                    </div>
-                </div>
-                <button class="section-edit" onclick="openPopup('preferencePopup')">✏️ Edit</button>
-            </div>
-
-            <div class="profile-fields">
-                <div class="profile-field">
-                    <label>Time Zone</label>
-                    <div>{{ user_data["time_zone"] or "Not added" }}</div>
-                </div>
-                <div class="profile-field">
-                    <label>Account Status</label>
-                    <div class="status-active"><span></span>Active</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="profile-card">
-            <div class="card-title">
-                <div class="card-title-left">
-                    <span>🔐</span>
-                    <div>
-                        <h3>Account</h3>
-                        <p>Your Travel Story account</p>
-                    </div>
-                </div>
-                <button class="section-edit" onclick="openPopup('accountPopup')">✏️ Edit</button>
-            </div>
-
-            <div class="account-info">
+<div class="profile-grid">
+    <div class="profile-card">
+        <div class="card-title">
+            <div class="card-title-left">
+                <span>👤</span>
                 <div>
-                    <span>Travel Story ID</span>
-                    <strong>{{ user_data["user_id"] }}</strong>
-                </div>
-                <div>
-                    <span>Account Status</span>
-                    <strong>Active</strong>
+                    <h3>Personal Information</h3>
+                    <p>Your basic personal details</p>
                 </div>
             </div>
+            <button type="button" class="section-edit" onclick="openPopup('personalPopup')">✏️ Edit</button>
+        </div>
 
-            <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+        <div class="profile-fields">
+            <div class="profile-field">
+                <label>Full Name</label>
+                <div>{{ user_data["full_name"] or "Not added" }}</div>
+            </div>
+            <div class="profile-field">
+                <label>User ID</label>
+                <div>{{ user_data["user_id"] or "Not available" }}</div>
+            </div>
+            <div class="profile-field">
+                <label>Gender</label>
+                <div>{{ user_data["gender"] or "Not added" }}</div>
+            </div>
+            <div class="profile-field">
+                <label>Date of Birth</label>
+                <div>{{ user_data["date_of_birth"] or "Not added" }}</div>
+            </div>
         </div>
     </div>
+
+    <div class="profile-card">
+        <div class="card-title">
+            <div class="card-title-left">
+                <span>📞</span>
+                <div>
+                    <h3>Contact Information</h3>
+                    <p>Your registered contact details</p>
+                </div>
+            </div>
+            <button type="button" class="section-edit" onclick="openPopup('contactPopup')">✏️ Edit</button>
+        </div>
+
+        <div class="profile-fields">
+            <div class="profile-field">
+                <label>Email Address</label>
+                <div>{{ user_data["email_id"] or "Not added" }}</div>
+            </div>
+            <div class="profile-field">
+                <label>Mobile Number</label>
+                <div>{{ user_data["mobile_number"] or "Not added" }}</div>
+            </div>
+            <div class="profile-field">
+                <label>Travel Story ID</label>
+                <div>{{ user_data["user_id"] or "Not available" }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-card">
+        <div class="card-title">
+            <div class="card-title-left">
+                <span>🌐</span>
+                <div>
+                    <h3>Preferences</h3>
+                    <p>Your location and timezone settings</p>
+                </div>
+            </div>
+            <button type="button" class="section-edit" onclick="openPopup('preferencePopup')">✏️ Edit</button>
+        </div>
+
+        <div class="profile-fields">
+            <div class="profile-field">
+                <label>Time Zone</label>
+                <div>{{ user_data["time_zone"] or "Not added" }}</div>
+            </div>
+            <div class="profile-field">
+                <label>Account Status</label>
+                <div class="status-active"><span></span>Active</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-card">
+        <div class="card-title">
+            <div class="card-title-left">
+                <span>🔐</span>
+                <div>
+                    <h3>Account</h3>
+                    <p>Your Travel Story account</p>
+                </div>
+            </div>
+            <button type="button" class="section-edit" onclick="openPopup('accountPopup')">✏️ Edit</button>
+        </div>
+
+        <div class="account-info">
+            <div>
+                <span>Travel Story ID</span>
+                <strong>{{ user_data["user_id"] or "Not available" }}</strong>
+            </div>
+            <div>
+                <span>Account Status</span>
+                <strong>Active</strong>
+            </div>
+        </div>
+
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+    </div>
+</div>
 </section>
 
 <div class="profile-popup" id="personalPopup">
     <div class="popup-box">
-        <button class="popup-close" onclick="closePopup('personalPopup')">×</button>
-        <div class="popup-header">
-            <span>👤</span>
-            <div>
-                <h3>Edit Personal Information</h3>
-                <p>Update your personal details</p>
-            </div>
+        <button type="button" class="popup-close" onclick="closePopup('personalPopup')">×</button>
+    <div class="popup-header">
+        <span>👤</span>
+        <div>
+            <h3>Edit Personal Information</h3>
+            <p>Update your personal details</p>
         </div>
-
-        <form method="POST" action="{{ url_for('update_profile') }}">
-            <input type="hidden" name="section" value="personal">
-
-            <div class="popup-fields">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" name="full_name" value="{{ user_data['full_name'] or '' }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label>User ID</label>
-                    <input type="text" value="{{ user_data['user_id'] }}" disabled>
-                </div>
-
-                <div class="form-group">
-                    <label>Gender</label>
-                    <select name="gender">
-                        <option value="">Select Gender</option>
-                        <option value="Male" {% if user_data['gender'] == 'Male' %}selected{% endif %}>Male</option>
-                        <option value="Female" {% if user_data['gender'] == 'Female' %}selected{% endif %}>Female</option>
-                        <option value="Other" {% if user_data['gender'] == 'Other' %}selected{% endif %}>Other</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Date of Birth</label>
-                    <input type="date" name="date_of_birth" value="{{ user_data['date_of_birth'] or '' }}">
-                </div>
-            </div>
-
-            <div class="popup-actions">
-                <button type="button" class="cancel-button" onclick="closePopup('personalPopup')">Cancel</button>
-                <button type="submit" class="save-button">Save Changes</button>
-            </div>
-        </form>
     </div>
-</div>
 
-<div class="profile-popup" id="contactPopup">
-    <div class="popup-box">
-        <button class="popup-close" onclick="closePopup('contactPopup')">×</button>
-        <div class="popup-header">
-            <span>📞</span>
-            <div>
-                <h3>Edit Contact Information</h3>
-                <p>Update your contact details</p>
-            </div>
-        </div>
-
-        <form method="POST" action="{{ url_for('update_profile') }}">
-            <input type="hidden" name="section" value="contact">
-
-            <div class="popup-fields">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" name="email_id" value="{{ user_data['email_id'] or '' }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Mobile Number</label>
-                    <input type="text" name="mobile_number" value="{{ user_data['mobile_number'] or '' }}" required>
-                </div>
-            </div>
-
-            <div class="popup-actions">
-                <button type="button" class="cancel-button" onclick="closePopup('contactPopup')">Cancel</button>
-                <button type="submit" class="save-button">Save Changes</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="profile-popup" id="preferencePopup">
-    <div class="popup-box">
-        <button class="popup-close" onclick="closePopup('preferencePopup')">×</button>
-        <div class="popup-header">
-            <span>🌐</span>
-            <div>
-                <h3>Edit Preferences</h3>
-                <p>Update your timezone</p>
-            </div>
-        </div>
-
-        <form method="POST" action="{{ url_for('update_profile') }}">
-            <input type="hidden" name="section" value="preferences">
-
-            <div class="popup-fields">
-                <div class="form-group">
-                    <label>Time Zone</label>
-                    <select name="time_zone">
-                        <option value="">Select Time Zone</option>
-                        <option value="Asia/Kolkata" {% if user_data['time_zone'] == 'Asia/Kolkata' %}selected{% endif %}>Asia/Kolkata (UTC+05:30)</option>
-                        <option value="Asia/Dubai" {% if user_data['time_zone'] == 'Asia/Dubai' %}selected{% endif %}>Asia/Dubai (UTC+04:00)</option>
-                        <option value="Asia/Singapore" {% if user_data['time_zone'] == 'Asia/Singapore' %}selected{% endif %}>Asia/Singapore (UTC+08:00)</option>
-                        <option value="Europe/London" {% if user_data['time_zone'] == 'Europe/London' %}selected{% endif %}>Europe/London</option>
-                        <option value="Europe/Paris" {% if user_data['time_zone'] == 'Europe/Paris' %}selected{% endif %}>Europe/Paris</option>
-                        <option value="America/New_York" {% if user_data['time_zone'] == 'America/New_York' %}selected{% endif %}>America/New_York</option>
-                        <option value="America/Los_Angeles" {% if user_data['time_zone'] == 'America/Los_Angeles' %}selected{% endif %}>America/Los_Angeles</option>
-                        <option value="Australia/Sydney" {% if user_data['time_zone'] == 'Australia/Sydney' %}selected{% endif %}>Australia/Sydney</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="popup-actions">
-                <button type="button" class="cancel-button" onclick="closePopup('preferencePopup')">Cancel</button>
-                <button type="submit" class="save-button">Save Changes</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="profile-popup" id="accountPopup">
-    <div class="popup-box">
-        <button class="popup-close" onclick="closePopup('accountPopup')">×</button>
-        <div class="popup-header">
-            <span>🔐</span>
-            <div>
-                <h3>Account Information</h3>
-                <p>Your account details</p>
-            </div>
-        </div>
+    <form method="POST" action="{{ url_for('update_profile') }}">
+        <input type="hidden" name="section" value="personal">
 
         <div class="popup-fields">
             <div class="form-group">
-                <label>Travel Story ID</label>
+                <label>Full Name</label>
+                <input type="text" name="full_name" value="{{ user_data['full_name'] or '' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>User ID</label>
                 <input type="text" value="{{ user_data['user_id'] }}" disabled>
             </div>
 
             <div class="form-group">
-                <label>Account Status</label>
-                <input type="text" value="Active" disabled>
+                <label>Gender</label>
+                <select name="gender">
+                    <option value="">Select Gender</option>
+                    <option value="Male" {% if user_data['gender'] == 'Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if user_data['gender'] == 'Female' %}selected{% endif %}>Female</option>
+                    <option value="Other" {% if user_data['gender'] == 'Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" name="date_of_birth" value="{{ user_data['date_of_birth'] or '' }}">
             </div>
         </div>
 
         <div class="popup-actions">
-            <button type="button" class="cancel-button" onclick="closePopup('accountPopup')">Close</button>
+            <button type="button" class="cancel-button" onclick="closePopup('personalPopup')">Cancel</button>
+            <button type="submit" class="save-button">Save Changes</button>
+        </div>
+    </form>
+</div>
+
+</div>
+
+<div class="profile-popup" id="contactPopup">
+    <div class="popup-box">
+        <button type="button" class="popup-close" onclick="closePopup('contactPopup')">×</button>
+    <div class="popup-header">
+        <span>📞</span>
+        <div>
+            <h3>Edit Contact Information</h3>
+            <p>Update your contact details</p>
         </div>
     </div>
+
+    <form method="POST" action="{{ url_for('update_profile') }}">
+        <input type="hidden" name="section" value="contact">
+
+        <div class="popup-fields">
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email_id" value="{{ user_data['email_id'] or '' }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="text" name="mobile_number" value="{{ user_data['mobile_number'] or '' }}" required>
+            </div>
+        </div>
+
+        <div class="popup-actions">
+            <button type="button" class="cancel-button" onclick="closePopup('contactPopup')">Cancel</button>
+            <button type="submit" class="save-button">Save Changes</button>
+        </div>
+    </form>
+</div>
+</div>
+
+<div class="profile-popup" id="preferencePopup">
+    <div class="popup-box">
+        <button type="button" class="popup-close" onclick="closePopup('preferencePopup')">×</button>
+
+    <div class="popup-header">
+        <span>🌐</span>
+        <div>
+            <h3>Edit Preferences</h3>
+            <p>Update your timezone</p>
+        </div>
+    </div>
+
+    <form method="POST" action="{{ url_for('update_profile') }}">
+        <input type="hidden" name="section" value="preferences">
+
+        <div class="popup-fields">
+            <div class="form-group">
+                <label>Time Zone</label>
+                <select name="time_zone">
+                    <option value="">Select Time Zone</option>
+                    <option value="Asia/Kolkata" {% if user_data['time_zone'] == 'Asia/Kolkata' %}selected{% endif %}>Asia/Kolkata (UTC+05:30)</option>
+                    <option value="Asia/Dubai" {% if user_data['time_zone'] == 'Asia/Dubai' %}selected{% endif %}>Asia/Dubai (UTC+04:00)</option>
+                    <option value="Asia/Singapore" {% if user_data['time_zone'] == 'Asia/Singapore' %}selected{% endif %}>Asia/Singapore (UTC+08:00)</option>
+                    <option value="Europe/London" {% if user_data['time_zone'] == 'Europe/London' %}selected{% endif %}>Europe/London</option>
+                    <option value="Europe/Paris" {% if user_data['time_zone'] == 'Europe/Paris' %}selected{% endif %}>Europe/Paris</option>
+                    <option value="America/New_York" {% if user_data['time_zone'] == 'America/New_York' %}selected{% endif %}>America/New_York</option>
+                    <option value="America/Los_Angeles" {% if user_data['time_zone'] == 'America/Los_Angeles' %}selected{% endif %}>America/Los_Angeles</option>
+                    <option value="Australia/Sydney" {% if user_data['time_zone'] == 'Australia/Sydney' %}selected{% endif %}>Australia/Sydney</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="popup-actions">
+            <button type="button" class="cancel-button" onclick="closePopup('preferencePopup')">Cancel</button>
+            <button type="submit" class="save-button">Save Changes</button>
+        </div>
+    </form>
+</div>
+
+</div>
+
+<div class="profile-popup" id="accountPopup">
+    <div class="popup-box">
+        <button type="button" class="popup-close" onclick="closePopup('accountPopup')">×</button>
+
+    <div class="popup-header">
+        <span>🔐</span>
+        <div>
+            <h3>Account Information</h3>
+            <p>Your account details</p>
+        </div>
+    </div>
+
+    <div class="popup-fields">
+        <div class="form-group">
+            <label>Travel Story ID</label>
+            <input type="text" value="{{ user_data['user_id'] }}" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>Account Status</label>
+            <input type="text" value="Active" disabled>
+        </div>
+    </div>
+
+    <div class="popup-actions">
+        <button type="button" class="cancel-button" onclick="closePopup('accountPopup')">Close</button>
+    </div>
+</div>
+
 </div>
 
 <script>
 function openPopup(id) {
-    document.getElementById(id).classList.add("show");
-    document.body.classList.add("popup-open");
+    const popup = document.getElementById(id);
+    if (popup) {
+        popup.classList.add("show");
+        document.body.classList.add("popup-open");
+    }
 }
 
 function closePopup(id) {
-    document.getElementById(id).classList.remove("show");
-    document.body.classList.remove("popup-open");
+    const popup = document.getElementById(id);
+    if (popup) {
+        popup.classList.remove("show");
+    }
+
+    if (!document.querySelector(".profile-popup.show")) {
+        document.body.classList.remove("popup-open");
+    }
 }
 
 document.querySelectorAll(".profile-popup").forEach(function(popup) {
