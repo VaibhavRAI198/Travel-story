@@ -1,14 +1,24 @@
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #0d0f12;
     color: #e2e8f0;
 }
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
 .dashboard {
     display: flex;
@@ -17,321 +27,718 @@ body {
     overflow: hidden;
 }
 
-/* =========================================
+
+/* =========================================================
    LEFT SIDEBAR
-========================================= */
+========================================================= */
+
 .left {
     width: 250px;
     height: 100vh;
+
     padding: 15px;
+
     background: #161a22;
+
     border-right: 1px solid #272d37;
+
     display: flex;
     flex-direction: column;
+
     gap: 12px;
 }
 
-/* =========================================
+
+/* =========================================================
    BORDERED SECTIONS
-========================================= */
+========================================================= */
+
 .sidebar-box {
     position: relative;
+
     border: 1.5px solid #272d37;
     border-radius: 14px;
+
     padding: 18px 15px 15px;
+
     background: #1c212c;
+
     min-width: 0;
 }
 
-/* Section title on border */
+
 .sidebar-box legend {
     padding: 0 10px;
+
     margin-left: 10px;
+
     font-size: 13px;
+
     font-weight: 700;
+
     color: #ffbe2e;
+
     background: #1c212c;
+
     letter-spacing: 0.4px;
 }
 
-/* =========================================
+
+/* =========================================================
    HEADER
-========================================= */
+========================================================= */
+
 .header-box {
     flex-shrink: 0;
 }
 
+
 .header {
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 }
+
 
 .logo-icon {
     width: 45px;
     height: 45px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     border-radius: 12px;
+
     background: rgba(255, 190, 46, 0.15);
+
     color: #ffbe2e;
+
     font-size: 23px;
-}
 
-.header h1 {
-    font-size: 19px;
-    font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-}
-
-.header p {
-    margin-top: 4px;
-    font-size: 11px;
-    color: #94a3b8;
-}
-
-/* =========================================
-   NAVIGATION
-========================================= */
-.navigation-box {
     flex-shrink: 0;
 }
 
-.navigation {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
 
-.navigation a {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 10px;
-    border-radius: 9px;
-    text-decoration: none;
-    color: #cbd5e1;
-    font-size: 11px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
+.header h1 {
+    font-size: 19px;
 
-.navigation a span {
-    width: 20px;
-    text-align: center;
-    font-size: 15px;
-}
-
-.navigation a:hover {
-    background: rgba(255, 190, 46, 0.12);
-    color: #ffbe2e;
-    transform: translateX(3px);
-}
-
-/* Active dashboard link */
-.navigation a:first-child {
-    background: #ffbe2e;
-    color: #0d0f12;
     font-weight: 700;
+
+    color: #ffffff;
+
+    letter-spacing: 0.5px;
 }
 
-/* Logout */
-.navigation .logout {
-    color: #ff6b6b;
-    margin-top: 3px;
-}
 
-.navigation .logout:hover {
-    background: rgba(255, 107, 107, 0.15);
-    color: #ff8585;
-}
+.header p {
+    margin-top: 4px;
 
-/* =========================================
-   CITY SECTION
-========================================= */
-.city-box {
-    flex: 1;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-}
+    font-size: 11px;
 
-/* =========================================
-   CITY SCROLL AREA
-========================================= */
-.city_area {
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-    padding-right: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-/* Scrollbar */
-.city_area::-webkit-scrollbar {
-    width: 5px;
-}
-
-.city_area::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.city_area::-webkit-scrollbar-thumb {
-    background: #2d3545;
-    border-radius: 10px;
-}
-
-.city_area::-webkit-scrollbar-thumb:hover {
-    background: #3f4a5f;
-}
-
-/* =========================================
-   ADD CITY
-========================================= */
-.add-city {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border: 1px dashed #ffbe2e;
-    border-radius: 9px;
-    text-decoration: none;
-    color: #ffbe2e;
-    background: rgba(255, 190, 46, 0.05);
-    font-size: 13px;
-    font-weight: 600;
-    transition: 0.2s ease;
-}
-
-.add-city span {
-    font-size: 18px;
-}
-
-.add-city:hover {
-    background: rgba(255, 190, 46, 0.15);
-    border-color: #ffd066;
-}
-
-/* =========================================
-   CITY ITEMS
-========================================= */
-.city-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: 9px;
-    text-decoration: none;
     color: #94a3b8;
-    font-size: 13px;
-    transition: all 0.2s ease;
 }
 
-.city-icon {
-    width: 25px;
-    height: 25px;
+
+/* =========================================================
+   NAVIGATION BOX
+========================================================= */
+
+.navigation-box {
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   NAVIGATION - ONE ROW
+========================================================= */
+
+.navigation {
+
     display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 5px;
+
+}
+
+
+/* =========================================================
+   NAVIGATION BUTTONS
+========================================================= */
+
+.nav-btn {
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
     align-items: center;
     justify-content: center;
-    border-radius: 7px;
-    background: #252c3a;
-    font-size: 13px;
-    color: #e2e8f0;
+
+    border: none;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    background: transparent;
+
+    color: #cbd5e1;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
 }
 
-.city-item:hover {
-    background: #252c3a;
-    color: #ffffff;
-    transform: translateX(3px);
+
+.nav-btn:hover {
+
+    background: rgba(255, 190, 46, 0.12);
+
+    color: #ffbe2e;
+
+    transform: translateY(-2px);
+
 }
 
-.city-item:hover .city-icon {
+
+/* =========================================================
+   ACTIVE DASHBOARD
+========================================================= */
+
+.nav-btn.active {
+
     background: #ffbe2e;
+
     color: #0d0f12;
+
+    font-weight: 700;
+
 }
 
-/* =========================================
-   MAIN CONTENT
-========================================= */
-.content {
-    flex: 1;
-    height: 100vh;
-    padding: 35px;
-    overflow-y: auto;
-    background: #0d0f12;
+
+.nav-btn.active:hover {
+
+    background: #ffd066;
+
+    color: #0d0f12;
+
 }
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.nav-btn.logout {
+
+    color: #ff6b6b;
+
+}
+
+
+.nav-btn.logout:hover {
+
+    background: rgba(255, 107, 107, 0.15);
+
+    color: #ff8585;
+
+}
+
+
+/* =========================================================
+   THREE LINE MENU BUTTON
+========================================================= */
+
+.menu-btn {
+
+    color: #ffbe2e;
+
+}
+
+
+.menu-btn:hover {
+
+    background: rgba(255, 190, 46, 0.15);
+
+}
+
+
+/* =========================================================
+   CITY DROPDOWN
+========================================================= */
+
+.city-dropdown {
+
+    position: absolute;
+
+    top: calc(100% + 8px);
+
+    right: 10px;
+
+    width: 200px;
+
+    max-height: 300px;
+
+    overflow-y: auto;
+
+    padding: 8px;
+
+    background: #161a22;
+
+    border: 1px solid #343c4b;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.55);
+
+    z-index: 1000;
+
+    display: none;
+}
+
+
+/* Show dropdown */
+
+.city-dropdown.show {
+
+    display: block;
+
+    animation: dropdownShow 0.18s ease;
+
+}
+
+
+@keyframes dropdownShow {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-5px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   DROPDOWN CITY ITEMS
+========================================================= */
+
+.dropdown-city {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    width: 100%;
+
+    padding: 9px 10px;
+
+    margin-bottom: 4px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    color: #cbd5e1;
+
+    font-size: 12px;
+
+    transition: all 0.2s ease;
+
+}
+
+
+.dropdown-city:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.dropdown-city:hover {
+
+    background: #252c3a;
+
+    color: #ffffff;
+
+}
+
+
+/* =========================================================
+   ADD CITY IN DROPDOWN
+========================================================= */
+
+.dropdown-city.add-city {
+
+    color: #ffbe2e;
+
+    background: rgba(255, 190, 46, 0.06);
+
+    border: 1px dashed #ffbe2e;
+
+    margin-bottom: 8px;
+
+}
+
+
+.dropdown-city.add-city:hover {
+
+    background: rgba(255, 190, 46, 0.15);
+
+}
+
+
+/* =========================================================
+   CITY ICON
+========================================================= */
+
+.city-icon {
+
+    width: 24px;
+
+    height: 24px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 6px;
+
+    background: #252c3a;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================================
+   DROPDOWN SCROLLBAR
+========================================================= */
+
+.city-dropdown::-webkit-scrollbar {
+
+    width: 5px;
+
+}
+
+
+.city-dropdown::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+.city-dropdown::-webkit-scrollbar-thumb {
+
+    background: #2d3545;
+
+    border-radius: 10px;
+
+}
+
+
+/* =========================================================
+   MY CITY SECTION
+========================================================= */
+
+.city-box {
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+/* =========================================================
+   CITY SCROLL AREA
+========================================================= */
+
+.city_area {
+
+    flex: 1;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    padding-right: 5px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+}
+
+
+.city_area::-webkit-scrollbar {
+
+    width: 5px;
+
+}
+
+
+.city_area::-webkit-scrollbar-track {
+
+    background: transparent;
+
+}
+
+
+.city_area::-webkit-scrollbar-thumb {
+
+    background: #2d3545;
+
+    border-radius: 10px;
+
+}
+
+
+.city_area::-webkit-scrollbar-thumb:hover {
+
+    background: #3f4a5f;
+
+}
+
+
+/* =========================================================
+   ADD CITY
+========================================================= */
+
+.add-city {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 12px;
+
+    border: 1px dashed #ffbe2e;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    color: #ffbe2e;
+
+    background: rgba(255, 190, 46, 0.05);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+
+}
+
+
+.add-city span {
+
+    font-size: 18px;
+
+}
+
+
+.add-city:hover {
+
+    background: rgba(255, 190, 46, 0.15);
+
+    border-color: #ffd066;
+
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.content {
+
+    flex: 1;
+
+    height: 100vh;
+
+    padding: 35px;
+
+    overflow-y: auto;
+
+    background: #0d0f12;
+
+}
+
 
 .content-header h2 {
+
     font-size: 28px;
+
     color: #ffffff;
+
 }
+
 
 .content-header p {
+
     margin-top: 6px;
+
     color: #94a3b8;
+
     font-size: 14px;
+
 }
 
-/* =========================================
+
+/* =========================================================
    DASHBOARD CARD
-========================================= */
+========================================================= */
+
 .dashboard-card {
+
     margin-top: 25px;
+
     padding: 25px;
+
     background: #161a22;
+
     border: 1px solid #272d37;
+
     border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.4);
+
 }
+
 
 .dashboard-card h3 {
+
     font-size: 18px;
+
     color: #ffffff;
+
 }
+
 
 .dashboard-card p {
+
     margin-top: 8px;
+
     font-size: 13px;
+
     color: #94a3b8;
+
 }
 
-/* =========================================
+
+/* =========================================================
    MOBILE
-========================================= */
+========================================================= */
+
 @media (max-width: 768px) {
+
     .left {
+
         width: 240px;
+
         padding: 12px;
+
         gap: 12px;
+
     }
 
+
     .content {
+
         padding: 20px;
+
     }
+
 
     .header h1 {
+
         font-size: 16px;
+
     }
+
 
     .header p {
+
         font-size: 10px;
+
     }
+
 }
 
+
 @media (max-width: 550px) {
+
     .left {
+
         width: 210px;
+
     }
+
 
     .content {
+
         padding: 15px;
+
     }
 
+
     .content-header h2 {
+
         font-size: 22px;
+
     }
+
+
+    .nav-btn {
+
+        width: 29px;
+
+        height: 29px;
+
+        font-size: 14px;
+
+    }
+
 }
