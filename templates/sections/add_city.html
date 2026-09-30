@@ -1,15 +1,13 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css_folder/add_city.css') }}">
-
 <section class="add-city-page">
-    <div class="add-city-header">
-        <div>
-            <span class="add-city-label">TRAVEL STORY</span>
-            <h2>Add New City</h2>
-            <p>Add a city to your travel collection and keep your journey organized.</p>
-        </div>
-        <div class="add-city-icon">📍</div>
+<div class="add-city-header">
+    <div class="header-content">
+        <span class="add-city-label">TRAVEL STORY</span>
+        <h2>Add New City</h2>
+        <p>Add a city to your travel collection and keep your journey organized.</p>
     </div>
-
+    <div class="add-city-icon">📍</div>
+</div>
 <div class="add-city-card">
     <div class="card-heading">
         <div class="heading-icon">🌍</div>
@@ -18,69 +16,20 @@
             <p>Enter the details of the city you want to add.</p>
         </div>
     </div>
-
     <form method="POST" action="{{ url_for('add_city') }}" class="city-form">
         <div class="form-grid">
             <div class="form-group">
                 <label for="city_name">City Name</label>
-                <input
-                    type="text"
-                    id="city_name"
-                    name="city_name"
-                    placeholder="Enter city name"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="country">Country</label>
-                <input
-                    type="text"
-                    id="country"
-                    name="country"
-                    placeholder="Enter country"
-                    required
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="state">State / Region</label>
-                <input
-                    type="text"
-                    id="state"
-                    name="state"
-                    placeholder="Enter state or region"
-                >
-            </div>
-
-            <div class="form-group">
-                <label for="visit_date">Visit Date</label>
-                <input
-                    type="date"
-                    id="visit_date"
-                    name="visit_date"
-                >
-            </div>
-
-            <div class="form-group full-width">
-                <label for="description">Travel Note</label>
-                <textarea
-                    id="description"
-                    name="description"
-                    placeholder="Write something about this city..."
-                    rows="5"
-                ></textarea>
+                <div class="input-wrapper">
+                    <span class="input-icon">🏙️</span>
+                    <input type="text" id="city_name" name="city_name" placeholder="Enter city name"required>
+                </div>
             </div>
         </div>
-
         <div class="form-actions">
             <button type="reset" class="clear-button">Clear</button>
-            <button type="submit" class="save-city-button">
-                <span>＋</span>
-                Save City
-            </button>
+            <button type="submit" class="save-city-button"><span>＋</span>Save City</button>
         </div>
     </form>
 </div>
-
 </section>
