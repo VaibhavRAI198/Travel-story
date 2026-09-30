@@ -1,394 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css_folder/common.css') }}">
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css_folder/common.css') }}"
+    >
+
     <title>Travel Story</title>
+
 </head>
+
+
 <body>
+
+
 <div class="dashboard">
-<div class="settings-page">
-    <!-- =========================
-         SECTION 1: HEADER
-    ========================== -->
-    <section class="settings-section header-section">
-
-        <div class="settings-header">
-
-            <div class="profile-icon">
-                👤
-            </div>
-
-            <div>
-                <h2>Settings</h2>
-                <p>
-                    Manage your account and travel preferences
-                </p>
-            </div>
-
-        </div>
-
-    </section>
 
 
-    <!-- =========================
-         SECTION 2: MY SETTINGS
-    ========================== -->
-    <section class="settings-section">
+    <!-- ================= LEFT SIDEBAR ================= -->
 
-        <div class="section-title">
-            <span class="title-icon">👤</span>
-
-            <div>
-                <h3>My Settings</h3>
-                <p>Manage your personal information</p>
-            </div>
-        </div>
+    <aside class="left">
 
 
-        <div class="settings-grid">
+        <!-- HEADER AREA -->
 
-            <div class="setting-item">
-                <label>Full Name</label>
+        <fieldset class="sidebar-box header-box">
 
-                <input
-                    type="text"
-                    value="{{ user_data['full_name'] }}"
-                    placeholder="Enter your name"
-                >
-            </div>
+            <legend>Travel Story</legend>
 
+            <div class="header">
 
-            <div class="setting-item">
-                <label>Email</label>
-
-                <input
-                    type="email"
-                    value="{{ user_data['email'] }}"
-                    placeholder="Enter your email"
-                >
-            </div>
-
-
-            <div class="setting-item">
-                <label>Username</label>
-
-                <input
-                    type="text"
-                    value="{{ user_data['username'] }}"
-                    placeholder="Username"
-                >
-            </div>
-
-
-            <div class="setting-item">
-                <label>Phone</label>
-
-                <input
-                    type="text"
-                    value="{{ user_data.get('phone', '') }}"
-                    placeholder="Phone number"
-                >
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         SECTION 3: SETTINGS
-    ========================== -->
-    <section class="settings-section settings-main">
-
-        <div class="section-title">
-
-            <span class="title-icon">⚙️</span>
-
-            <div>
-                <h3>Settings</h3>
-                <p>Customize your Travel Story</p>
-            </div>
-
-        </div>
-
-
-        <!-- Scrollable My City Area -->
-        <div class="city-area">
-
-            <div class="city-heading">
-                <div>
-                    <h4>My City</h4>
-                    <span>Select and manage your cities</span>
+                <div class="logo-icon">
+                    ✈️
                 </div>
 
-                <a
-                    href="{{ url_for('add_city') }}"
-                    class="add-city-btn"
-                >
-                    ＋ Add City
+                <div>
+                    <h1>Travel Story</h1>
+                    <p>My Travel Dashboard</p>
+                </div>
+
+            </div>
+
+        </fieldset>
+
+
+
+        <!-- MY SETTINGS / NAVIGATION -->
+
+        <fieldset class="sidebar-box navigation-box">
+
+            <legend>My Setting</legend>
+
+            <div class="navigation">
+
+                <a href="#">
+                    <span>🏠</span>
+                    Dashboard
                 </a>
-            </div>
 
+                <a href="#">
+                    <span>👤</span>
+                    My Profile
+                </a>
 
-            <div class="city-list">
+                <a href="#">
+                    <span>⚙️</span>
+                    Setting
+                </a>
 
-                {% if cities %}
+                <a href="#">
+                    <span>ℹ️</span>
+                    About Me
+                </a>
 
-                    {% for city in cities %}
-
-                    <div class="city-card">
-
-                        <div class="city-icon">
-                            📍
-                        </div>
-
-                        <div class="city-info">
-
-                            <strong>
-                                {{ city['city_name'] }}
-                            </strong>
-
-                            <span>
-                                {{ city.get('country', '') }}
-                            </span>
-
-                        </div>
-
-
-                        <div class="city-actions">
-
-                            <a
-                                href="{{ url_for('edit_city', city_id=city['id']) }}"
-                                class="edit-btn"
-                            >
-                                ✏️
-                            </a>
-
-                            <a
-                                href="{{ url_for('delete_city', city_id=city['id']) }}"
-                                class="delete-btn"
-                            >
-                                🗑️
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                    {% endfor %}
-
-                {% else %}
-
-                    <div class="empty-city">
-                        <div>🏙️</div>
-
-                        <strong>No cities added</strong>
-
-                        <span>
-                            Add your first city to get started.
-                        </span>
-                    </div>
-
-                {% endif %}
+                <a href="#" class="logout">
+                    <span>🚪</span>
+                    Logout
+                </a>
 
             </div>
 
-        </div>
+        </fieldset>
 
 
-        <!-- Other Settings -->
 
-        <div class="other-settings">
+        <!-- CITY AREA -->
 
-            <div class="setting-row">
+        <fieldset class="sidebar-box city-box">
 
-                <div>
-                    <strong>Notifications</strong>
-                    <span>Receive travel updates</span>
-                </div>
+            <legend>My City</legend>
 
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label>
+            <div class="city_area">
 
-            </div>
+                <a href="#" class="add-city">
+                    <span>＋</span>
+                    Add City
+                </a>
 
 
-            <div class="setting-row">
+                {% for i in city_name %}
 
-                <div>
-                    <strong>Dark Mode</strong>
-                    <span>Use dark appearance</span>
-                </div>
+                <a href="#" class="city-item">
 
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label>
+                    <span class="city-icon">
+                        📍
+                    </span>
+
+                    {{ i }}
+
+                </a>
+
+                {% endfor %}
 
             </div>
 
-        </div>
-
-    </section>
-
-</div>
-
-    <!-- ==========================================
-         RIGHT CONTENT
-    =========================================== -->
-
-    <main class="main-content">
+        </fieldset>
 
 
-        <div class="top-header">
-
-            <div class="page-title">
-
-                <h2>Dashboard</h2>
-
-                <p>
-                    Manage and explore your travel stories.
-                </p>
-
-            </div>
+    </aside>
 
 
-            <div class="date-box">
-                🌍 Explore • Travel • Remember
-            </div>
 
-        </div>
+    <!-- ================= MAIN CONTENT ================= -->
 
+    <main class="content">
 
-        <!-- Welcome Banner -->
+        <div class="content-header">
 
-        <section class="welcome-card">
-
-            <h1>
-                Hello, {{ user_data["full_name"] }}! 👋
-            </h1>
+            <h2>Dashboard</h2>
 
             <p>
-                Welcome back to your Travel Story.
-                Keep your adventures and memories in one beautiful place.
+                Welcome to your Travel Story dashboard.
             </p>
-
-        </section>
-
-
-        <!-- Items -->
-
-        <div class="items-header">
-
-            <h3>
-                Your Travel Stories
-            </h3>
-
-            <span>
-                Explore your memories
-            </span>
 
         </div>
 
 
-        <div class="items-container">
+        <div class="dashboard-card">
 
-            <!--
-                Replace these example cards
-                with your Flask/Jinja city data.
-            -->
+            <h3>My Travel Story</h3>
 
-
-            <div class="item-card">
-
-                <div class="item-icon">
-                    🏔️
-                </div>
-
-                <h4>
-                    Mountain Adventure
-                </h4>
-
-                <p>
-                    Add your beautiful mountain travel
-                    memories and experiences here.
-                </p>
-
-            </div>
-
-
-            <div class="item-card">
-
-                <div class="item-icon">
-                    🏖️
-                </div>
-
-                <h4>
-                    Beach Journey
-                </h4>
-
-                <p>
-                    Save your favorite beach destinations
-                    and unforgettable moments.
-                </p>
-
-            </div>
-
-
-            <div class="item-card">
-
-                <div class="item-icon">
-                    🏙️
-                </div>
-
-                <h4>
-                    City Exploration
-                </h4>
-
-                <p>
-                    Record the cities you have visited
-                    and the stories behind them.
-                </p>
-
-            </div>
-
-
-            <!-- Empty State Example -->
-
-            <!--
-            <div class="empty-state">
-
-                <div class="empty-icon">
-                    🗺️
-                </div>
-
-                <h3>
-                    No cities added yet
-                </h3>
-
-                <p>
-                    Start your travel story by adding
-                    your first city.
-                </p>
-
-                <a href="{{ url_for('add_city') }}"
-                   class="empty-add">
-                    Add Your First City
-                </a>
-
-            </div>
-            -->
+            <p>
+                Select a city from the left side to explore
+                your travel stories.
+            </p>
 
         </div>
 
     </main>
 
+
 </div>
 
+
 </body>
+
 </html>
