@@ -499,6 +499,117 @@ def update_profile():
     return redirect(url_for("my_profile"))
 
 
+@app.route("/add_city_function", methods=["GET", "POST"])
+def add_city_function():
+if "user_id" not in session:
+return redirect(url_for("login"))
+
+user_data = get_user_data(session["user_id"])
+
+if not user_data:
+    session.clear()
+    return redirect(url_for("login"))
+
+if request.method == "POST":
+    city_name = request.form.get("city_name", "").strip()
+
+    if not city_name:
+        return render_template(
+            "dashboard.html",
+            username=session.get("username"),
+            user_data=user_data,
+            section="add_city",
+            error="Please enter a city name."
+        )
+
+    conn = None
+    cursor = None
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            SELECT city_id
+            FROM city
+            ORDER BY city_id DESC
+            LIMIT 1
+            """
+        )
+
+        result = cursor.fetchone()
+
+        if result:
+            last_city_id = result[0]
+
+            try:
+                serial_number = int(
+                    "".join(
+                        character
+                        for character in str(last_city_id)
+                        if character.isdigit()
+                    )
+                ) + 1
+            except:
+                serial_number = 1
+        else:
+            serial_number = 1
+
+        city_id = f"city{serial_number:06d}"
+
+        cursor.execute(
+            """
+            INSERT INTO city
+            (
+                city_id,
+                user_id,
+                city_name
+            )
+            VALUES
+            (
+                %s,
+                %s,
+                %s
+            )
+            """,
+            (
+                city_id,
+                session["user_id"],
+                city_name
+            )
+        )
+
+        conn.commit()
+
+        return redirect(url_for("dashboard"))
+
+    except Exception as e:
+        if conn:
+            conn.rollback()
+
+        return render_template(
+            "dashboard.html",
+            username=session.get("username"),
+            user_data=user_data,
+            section="add_city",
+            error=f"Database Error: {str(e)}"
+        )
+
+    finally:
+        if cursor:
+            cursor.close()
+
+        if conn:
+            conn.close()
+
+return render_template(
+    "dashboard.html",
+    username=session.get("username"),
+    user_data=user_data,
+    section="add_city"
+)
+
 
 if __name__ == "__main__":
     app.run(
