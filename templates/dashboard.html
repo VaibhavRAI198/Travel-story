@@ -38,11 +38,11 @@
                 </a>
             </div>
 
-            <div class="city_area">
-                <a href="{{ url_for('city') }}" class="city-item {% if section == 'city' %}active{% endif %}">
-                    <span class="city-icon">📍</span>
-                    <span>Delhi</span>
-                </a>
+            <div class="city_area"> 
+                {% for city_item in cities %} 
+                <a href="{{ url_for('city', city_id=city_item['city_id']) }}" class="city-item {% if section == 'city' and selected_city_id == city_item['city_id'] %}active{% endif %}"> 
+                    <span class="city-icon">📍</span> <span>{{ city_item['city_name'] }}</span> </a> 
+                {% endfor %} 
             </div>
         </section>
     </aside>
