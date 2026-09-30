@@ -71,7 +71,7 @@ def dashboard():
     if not row:
         return "User data not found", 404
     user_data = dict(zip(columns, row))
-    return render_template( "dashboard.html",username=session.get("username"),user_data=user_data)
+    return render_template( "dashboard.html",username=session.get("username"),user_data=user_data, section="dashboard")
     
 @app.route("/logout")
 def logout():
@@ -178,20 +178,20 @@ def signup():
 def add_city():
     if "username" not in session: 
         return redirect(url_for("login")) 
-    return render_template("add_city.html")
+    return render_template("add_city.html",, section="add_city")
 
 @app.route("/setting") 
 def setting():
     if "username" not in session: 
         return redirect(url_for("login")) 
-    return render_template("setting.html")
+    return render_template("setting.html", section="setting")
 
 
 @app.route("/about_me") 
 def about_me():
     if "username" not in session: 
         return redirect(url_for("login")) 
-    return render_template("about_me.html")
+    return render_template("about_me.html", section="about_me")
 
 @app.route("/my_profile")
 def my_profile():
