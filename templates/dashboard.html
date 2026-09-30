@@ -2,23 +2,36 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css_folder/common.css') }}">
 
     <title>Travel Story</title>
+
 </head>
+
 
 <body>
 
 <div class="dashboard">
 
-    <!-- ================= LEFT SIDEBAR ================= -->
+
+    <!-- =====================================================
+         LEFT / SIDEBAR
+    ====================================================== -->
+
     <aside class="left">
 
-        <!-- ================= HEADER AREA ================= -->
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
         <fieldset class="sidebar-box header-box">
 
             <div class="header">
@@ -28,11 +41,15 @@
                 </div>
 
                 <div>
-                    <h1>Travel Story</h1>
+
+                    <h1>
+                        Travel Story
+                    </h1>
 
                     <p>
                         Welcome, {{ user_data["full_name"] }}
                     </p>
+
                 </div>
 
             </div>
@@ -40,139 +57,271 @@
         </fieldset>
 
 
-        <!-- ================= MY SETTINGS ================= -->
+
+        <!-- =================================================
+             NAVIGATION BUTTON AREA
+        ================================================== -->
+
         <fieldset class="sidebar-box navigation-box">
 
-            <legend>My Setting</legend>
+            <legend>
+                My Setting
+            </legend>
+
 
             <div class="navigation">
 
+
                 <!-- Dashboard -->
+
                 <a href="{{ url_for('dashboard') }}"
                    class="nav-btn active"
                    title="Dashboard">
+
                     <span>🏠</span>
+
                 </a>
 
+
+
                 <!-- Profile -->
+
                 <a href="{{ url_for('my_profile') }}"
                    class="nav-btn"
                    title="My Profile">
+
                     <span>👤</span>
+
                 </a>
 
+
+
                 <!-- Settings -->
+
                 <a href="{{ url_for('setting') }}"
                    class="nav-btn"
                    title="Settings">
+
                     <span>⚙️</span>
+
                 </a>
 
+
+
                 <!-- About -->
+
                 <a href="{{ url_for('about_me') }}"
                    class="nav-btn"
                    title="About Me">
+
                     <span>ℹ️</span>
+
                 </a>
 
+
+
                 <!-- Logout -->
+
                 <a href="{{ url_for('logout') }}"
                    class="nav-btn logout"
                    title="Logout">
+
                     <span>🚪</span>
+
                 </a>
 
-                <!-- Three Line City Menu -->
+
+
+                <!-- MOBILE MENU -->
+
                 <button type="button"
                         class="nav-btn menu-btn"
                         onclick="toggleCityMenu()"
-                        title="My Cities">
+                        title="Cities">
+
                     <span>☰</span>
+
                 </button>
 
+
             </div>
 
 
-            <!-- ================= CITY DROPDOWN ================= -->
-            <div class="city-dropdown" id="cityDropdown">
+        </fieldset>
+
+
+
+        <!-- =================================================
+             CITY AREA
+        ================================================== -->
+
+        <div class="city-section">
+
+
+            <!-- CITY HEADER -->
+
+            <div class="city-header">
+
+                <span>
+                    My City
+                </span>
+
+                <a href="#"
+                   class="add-city-small">
+
+                    ＋ Add City
+
+                </a>
+
+            </div>
+
+
+
+            <!-- CITY LIST -->
+
+            <div class="city_area"
+                 id="cityArea">
+
 
                 <!-- Add City -->
+
                 <a href="#"
-                   class="dropdown-city add-city">
-                    <span>＋</span>
-                    <span>Add City</span>
+                   class="city-item add-city">
+
+                    <span class="city-icon">
+                        ＋
+                    </span>
+
+                    <span>
+                        Add City
+                    </span>
+
                 </a>
 
 
-                <!-- City List -->
-                <div class="dropdown-city-list">
 
-                    <!-- Example cities -->
-                    <a href="#" class="dropdown-city">
-                        <span class="city-icon">📍</span>
-                        <span>Delhi</span>
-                    </a>
+                <!-- CITY 1 -->
 
-                    <a href="#" class="dropdown-city">
-                        <span class="city-icon">📍</span>
-                        <span>Mumbai</span>
-                    </a>
+                <a href="#"
+                   class="city-item">
 
-                    <a href="#" class="dropdown-city">
-                        <span class="city-icon">📍</span>
-                        <span>Jaipur</span>
-                    </a>
+                    <span class="city-icon">
+                        📍
+                    </span>
 
-                    <a href="#" class="dropdown-city">
-                        <span class="city-icon">📍</span>
-                        <span>Manali</span>
-                    </a>
+                    <span>
+                        Delhi
+                    </span>
 
-                    <a href="#" class="dropdown-city">
-                        <span class="city-icon">📍</span>
-                        <span>Goa</span>
-                    </a>
-
-                    <a href="#" class="dropdown-city">
-                        <span class="city-icon">📍</span>
-                        <span>Bengaluru</span>
-                    </a>
-
-                </div>
-
-            </div>
-
-        </fieldset>
-
-
-        <!-- ================= CITY AREA ================= -->
-        <fieldset class="sidebar-box city-box">
-
-            <legend>My City</legend>
-
-            <div class="city_area">
-
-                <a href="#" class="add-city">
-                    <span>＋</span>
-                    Add City
                 </a>
 
-                <!-- Your dynamic city list can come here -->
+
+
+                <!-- CITY 2 -->
+
+                <a href="#"
+                   class="city-item">
+
+                    <span class="city-icon">
+                        📍
+                    </span>
+
+                    <span>
+                        Mumbai
+                    </span>
+
+                </a>
+
+
+
+                <!-- CITY 3 -->
+
+                <a href="#"
+                   class="city-item">
+
+                    <span class="city-icon">
+                        📍
+                    </span>
+
+                    <span>
+                        Jaipur
+                    </span>
+
+                </a>
+
+
+
+                <!-- CITY 4 -->
+
+                <a href="#"
+                   class="city-item">
+
+                    <span class="city-icon">
+                        📍
+                    </span>
+
+                    <span>
+                        Manali
+                    </span>
+
+                </a>
+
+
+
+                <!-- CITY 5 -->
+
+                <a href="#"
+                   class="city-item">
+
+                    <span class="city-icon">
+                        📍
+                    </span>
+
+                    <span>
+                        Goa
+                    </span>
+
+                </a>
+
+
+
+                <!-- CITY 6 -->
+
+                <a href="#"
+                   class="city-item">
+
+                    <span class="city-icon">
+                        📍
+                    </span>
+
+                    <span>
+                        Bengaluru
+                    </span>
+
+                </a>
+
 
             </div>
 
-        </fieldset>
+        </div>
+
 
     </aside>
 
 
-    <!-- ================= MAIN CONTENT ================= -->
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
 
     <main class="content">
 
+
         <div class="content-header">
 
-            <h2>Dashboard</h2>
+            <h2>
+                Dashboard
+            </h2>
 
             <p>
                 Welcome to your Travel Story dashboard.
@@ -181,54 +330,46 @@
         </div>
 
 
+
         <div class="dashboard-card">
 
-            <h3>My Travel Story</h3>
+            <h3>
+                My Travel Story
+            </h3>
 
             <p>
-                Select a city from the left side to explore
+                Select a city from the city list to explore
                 your travel stories.
             </p>
 
         </div>
 
+
     </main>
+
 
 </div>
 
 
-<!-- ================= JAVASCRIPT ================= -->
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
 
 <script>
 
 function toggleCityMenu() {
 
-    const menu = document.getElementById("cityDropdown");
+    const cityArea =
+        document.getElementById("cityArea");
 
-    menu.classList.toggle("show");
+    cityArea.classList.toggle("mobile-city-open");
 
 }
 
-
-/* Close dropdown when clicking outside */
-
-document.addEventListener("click", function(event) {
-
-    const menu = document.getElementById("cityDropdown");
-    const button = document.querySelector(".menu-btn");
-
-    if (
-        !menu.contains(event.target) &&
-        !button.contains(event.target)
-    ) {
-
-        menu.classList.remove("show");
-
-    }
-
-});
-
 </script>
 
+
 </body>
+
 </html>
